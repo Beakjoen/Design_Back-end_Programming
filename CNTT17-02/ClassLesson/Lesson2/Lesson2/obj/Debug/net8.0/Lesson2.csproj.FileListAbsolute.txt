@@ -1,0 +1,14 @@
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\bin\Debug\net8.0\Lesson2.exe
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\bin\Debug\net8.0\Lesson2.deps.json
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\bin\Debug\net8.0\Lesson2.runtimeconfig.json
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\bin\Debug\net8.0\Lesson2.dll
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\bin\Debug\net8.0\Lesson2.pdb
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\Lesson2.GeneratedMSBuildEditorConfig.editorconfig
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\Lesson2.AssemblyInfoInputs.cache
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\Lesson2.AssemblyInfo.cs
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\Lesson2.csproj.CoreCompileInputs.cache
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\Lesson2.dll
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\refint\Lesson2.dll
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\Lesson2.pdb
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\Lesson2.genruntimeconfig.cache
+D:\CNTT17-02\ClassLesson\Lesson2\Lesson2\obj\Debug\net8.0\ref\Lesson2.dll
