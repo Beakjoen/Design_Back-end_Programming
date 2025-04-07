@@ -1,0 +1,14 @@
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\bin\Debug\net8.0\LAB1.1.exe
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\bin\Debug\net8.0\LAB1.1.deps.json
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\bin\Debug\net8.0\LAB1.1.runtimeconfig.json
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\bin\Debug\net8.0\LAB1.1.dll
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\bin\Debug\net8.0\LAB1.1.pdb
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\LAB1.1.GeneratedMSBuildEditorConfig.editorconfig
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\LAB1.1.AssemblyInfoInputs.cache
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\LAB1.1.AssemblyInfo.cs
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\LAB1.1.csproj.CoreCompileInputs.cache
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\LAB1.1.dll
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\refint\LAB1.1.dll
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\LAB1.1.pdb
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\LAB1.1.genruntimeconfig.cache
+D:\CNTT17-02\LAB\LAB1.1\LAB1.1\obj\Debug\net8.0\ref\LAB1.1.dll
