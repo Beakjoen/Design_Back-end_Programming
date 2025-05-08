@@ -1,0 +1,22 @@
+﻿@model List<ReceivingParameter.Models.Student>
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Students List</h1>
+<a class=" btn btn-primary mb-3" asp-action="Create">Add</a>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Address</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.id</td>
+			<td>@item.name</td>
+			<td>@item.address</td>
+		</tr>
+	}
+</table>

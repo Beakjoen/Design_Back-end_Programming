@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|d:\\cntt17-02\\classlesson\\lesson4\\dependencyinjection\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|solutionrelative:dependencyinjection\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|d:\\cntt17-02\\classlesson\\lesson4\\dependencyinjection\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|solutionrelative:dependencyinjection\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|d:\\cntt17-02\\classlesson\\lesson4\\dependencyinjection\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|solutionrelative:dependencyinjection\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|d:\\cntt17-02\\classlesson\\lesson4\\dependencyinjection\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|solutionrelative:dependencyinjection\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|d:\\cntt17-02\\classlesson\\lesson4\\dependencyinjection\\services\\istudentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0CB2B6A-12D5-49A0-A98D-757BC72BE50E}|DependencyInjection\\DependencyInjection.csproj|solutionrelative:dependencyinjection\\services\\istudentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "DependencyInjection\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "DependencyInjection\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T04:14:25.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "DependencyInjection\\Controllers\\StudentController.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "DependencyInjection\\Controllers\\StudentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T03:49:59.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StudentService.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Services\\StudentService.cs",
+              "RelativeDocumentMoniker": "DependencyInjection\\Services\\StudentService.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Services\\StudentService.cs",
+              "RelativeToolTip": "DependencyInjection\\Services\\StudentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T03:40:58.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IStudentService.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Services\\IStudentService.cs",
+              "RelativeDocumentMoniker": "DependencyInjection\\Services\\IStudentService.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Services\\IStudentService.cs",
+              "RelativeToolTip": "DependencyInjection\\Services\\IStudentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T03:37:41.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Student.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Models\\Student.cs",
+              "RelativeDocumentMoniker": "DependencyInjection\\Models\\Student.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson4\\DependencyInjection\\Models\\Student.cs",
+              "RelativeToolTip": "DependencyInjection\\Models\\Student.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T03:30:29.977Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

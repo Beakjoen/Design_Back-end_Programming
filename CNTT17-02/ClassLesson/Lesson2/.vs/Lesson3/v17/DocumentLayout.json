@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CNTT17-02\\ClassLesson\\Lesson3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0818AF6D-589B-4CB2-80ED-45A709222691}|Lesson3\\Lesson3.csproj|d:\\cntt17-02\\classlesson\\lesson3\\lesson3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0818AF6D-589B-4CB2-80ED-45A709222691}|Lesson3\\Lesson3.csproj|solutionrelative:lesson3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0818AF6D-589B-4CB2-80ED-45A709222691}|Lesson3\\Lesson3.csproj|d:\\cntt17-02\\classlesson\\lesson3\\lesson3\\genericclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0818AF6D-589B-4CB2-80ED-45A709222691}|Lesson3\\Lesson3.csproj|solutionrelative:lesson3\\genericclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GenericClass.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson3\\Lesson3\\GenericClass.cs",
+              "RelativeDocumentMoniker": "Lesson3\\GenericClass.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson3\\Lesson3\\GenericClass.cs",
+              "RelativeToolTip": "Lesson3\\GenericClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T02:03:59.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson3\\Lesson3\\Program.cs",
+              "RelativeDocumentMoniker": "Lesson3\\Program.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson3\\Lesson3\\Program.cs",
+              "RelativeToolTip": "Lesson3\\Program.cs",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAwwJUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T02:03:10.972Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

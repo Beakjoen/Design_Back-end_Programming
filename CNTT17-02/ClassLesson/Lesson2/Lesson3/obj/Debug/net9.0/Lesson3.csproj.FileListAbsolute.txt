@@ -1,0 +1,14 @@
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\bin\Debug\net9.0\Lesson3.exe
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\bin\Debug\net9.0\Lesson3.deps.json
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\bin\Debug\net9.0\Lesson3.runtimeconfig.json
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\bin\Debug\net9.0\Lesson3.dll
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\bin\Debug\net9.0\Lesson3.pdb
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\Lesson3.GeneratedMSBuildEditorConfig.editorconfig
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\Lesson3.AssemblyInfoInputs.cache
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\Lesson3.AssemblyInfo.cs
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\Lesson3.csproj.CoreCompileInputs.cache
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\Lesson3.dll
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\refint\Lesson3.dll
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\Lesson3.pdb
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\Lesson3.genruntimeconfig.cache
+D:\CNTT17-02\ClassLesson\Lesson3\Lesson3\obj\Debug\net9.0\ref\Lesson3.dll

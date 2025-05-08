@@ -1,0 +1,26 @@
+﻿@model List<DependencyInjection.Models.Student>
+    @{
+	ViewData["Title"] = "Index";
+    }
+
+    <div class="container col-md-8 offset-md-2">
+        <table class=" table table-bordered ">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Student in Model)
+			{
+                <tr>
+                    <td>@Student.Id</td>
+                    <td>@Student.Name</td>
+                    <td>@Student.Phone</td>
+                </tr>
+			}
+            </tbody>
+        </table>
+    </div>
