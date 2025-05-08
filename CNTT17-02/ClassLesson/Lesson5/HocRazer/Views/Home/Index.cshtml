@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    var today = DateTime.Now.ToShortDateString();
+}
+<h3>Hom nay ngay @today</h3>
+<!--Cau truc re nhanh-->
+@{
+    string userName = "Nguyen Van A";
+    string role = "User";
+}
+<h3>Xin chao @userName</h3>
+@if (role == "Admin")
+{
+    <h3>Ban la Admin</h3>
+}
+else if (role == "User")
+{
+    <h3>Ban la nguoi dung thong thuong</h3>
+}
+else
+{
+    <h3>Quyen chua duoc xac dinh</h3>
+}
+
+<!--switch case-->
+@{
+    int thang = 6;
+    <p>Tháng @thang:</p>
+    switch (thang)
+    {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            <p>Tháng @thang có 31 ngày</p>
+            ;
+            break;
+
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            <p>Tháng @thang có 30 ngày</p>
+            ;
+            break;
+
+        case 2:
+            <p>Tháng @thang có 28 hoặc 29 ngày</p>
+            ;
+            break;
+
+        default:
+            <p>Tháng không hợp lệ</p>
+            ;
+            break;
+    }
+}
+
+<!--Cau truc vong lap while-->
+@for(int i = 0; i < 5; i++)
+{
+    <p>Item @i</p>
+}
+@{
+    int j = 0;
+}
+@while(j<5)
+{
+    <p>Phan tu thu @j</p>
+    j++;
+}
+
+<!--Cau truc lap foreach-->
+@{
+    List<string> flowers = new List<string>()
+    {
+        "Mai, Lan, Huệ, Đào"
+    };
+}
+@foreach(var item in flowers)
+{
+    <p>Hoa @item</p>
+}

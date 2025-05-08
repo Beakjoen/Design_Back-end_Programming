@@ -1,0 +1,17 @@
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\bin\Debug\net8.0\LAB1.4.exe
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\bin\Debug\net8.0\LAB1.4.deps.json
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\bin\Debug\net8.0\LAB1.4.runtimeconfig.json
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\bin\Debug\net8.0\LAB1.4.dll
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\bin\Debug\net8.0\LAB1.4.pdb
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.csproj.AssemblyReference.cache
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.GeneratedMSBuildEditorConfig.editorconfig
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.AssemblyInfoInputs.cache
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.AssemblyInfo.cs
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.csproj.CoreCompileInputs.cache
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.csproj.Up2Date
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.dll
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\refint\LAB1.4.dll
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.pdb
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\LAB1.4.genruntimeconfig.cache
+D:\CNTT17-02\ClassLesson\LAB1.4\LAB1.4\obj\Debug\net8.0\ref\LAB1.4.dll
