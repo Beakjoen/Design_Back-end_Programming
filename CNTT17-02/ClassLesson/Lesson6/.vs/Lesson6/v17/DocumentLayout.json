@@ -1,0 +1,89 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4E783F38-E307-47EA-B26E-4EB4A4EB835C}|HocValkidations\\HocValkidations.csproj|d:\\cntt17-02\\classlesson\\lesson6\\hocvalkidations\\views\\nhanvien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4E783F38-E307-47EA-B26E-4EB4A4EB835C}|HocValkidations\\HocValkidations.csproj|solutionrelative:hocvalkidations\\views\\nhanvien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E783F38-E307-47EA-B26E-4EB4A4EB835C}|HocValkidations\\HocValkidations.csproj|d:\\cntt17-02\\classlesson\\lesson6\\hocvalkidations\\controllers\\nhanviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E783F38-E307-47EA-B26E-4EB4A4EB835C}|HocValkidations\\HocValkidations.csproj|solutionrelative:hocvalkidations\\controllers\\nhanviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E783F38-E307-47EA-B26E-4EB4A4EB835C}|HocValkidations\\HocValkidations.csproj|d:\\cntt17-02\\classlesson\\lesson6\\hocvalkidations\\views\\nhanvien\\nhanvien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4E783F38-E307-47EA-B26E-4EB4A4EB835C}|HocValkidations\\HocValkidations.csproj|solutionrelative:hocvalkidations\\views\\nhanvien\\nhanvien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E783F38-E307-47EA-B26E-4EB4A4EB835C}|HocValkidations\\HocValkidations.csproj|d:\\cntt17-02\\classlesson\\lesson6\\hocvalkidations\\models\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E783F38-E307-47EA-B26E-4EB4A4EB835C}|HocValkidations\\HocValkidations.csproj|solutionrelative:hocvalkidations\\models\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NhanVien.cshtml",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\HocValkidations\\Views\\NhanVien\\NhanVien.cshtml",
+              "RelativeDocumentMoniker": "HocValkidations\\Views\\NhanVien\\NhanVien.cshtml",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\HocValkidations\\Views\\NhanVien\\NhanVien.cshtml",
+              "RelativeToolTip": "HocValkidations\\Views\\NhanVien\\NhanVien.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T01:30:56.071Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\HocValkidations\\Views\\NhanVien\\Index.cshtml",
+              "RelativeDocumentMoniker": "HocValkidations\\Views\\NhanVien\\Index.cshtml",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\HocValkidations\\Views\\NhanVien\\Index.cshtml",
+              "RelativeToolTip": "HocValkidations\\Views\\NhanVien\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T01:10:14.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NhanVienController.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\HocValkidations\\Controllers\\NhanVienController.cs",
+              "RelativeDocumentMoniker": "HocValkidations\\Controllers\\NhanVienController.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\HocValkidations\\Controllers\\NhanVienController.cs",
+              "RelativeToolTip": "HocValkidations\\Controllers\\NhanVienController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwAUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T01:01:59.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NhanVien.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\HocValkidations\\Models\\NhanVien.cs",
+              "RelativeDocumentMoniker": "HocValkidations\\Models\\NhanVien.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson6\\HocValkidations\\Models\\NhanVien.cs",
+              "RelativeToolTip": "HocValkidations\\Models\\NhanVien.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T00:49:29.213Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+﻿@model List<NguyenQuocHuy.Models.BaiViet>
+
+<h1>Danh sách bài viết</h1>
+<a asp-action="Create">Thêm bài viết</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Mã bài viết</th>
+			<th>Tiêu đề</th>
+			<th>Nội dung</th>
+			<th>Ngày Post</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.MaBaiViet</td>
+				<td>@item.TieuDe</td>
+				<td>@item.NoiDung</td>
+				<td>@item.NgayPost.ToString()</td>
+			</tr>
+		}
+	</tbody>

@@ -1,0 +1,27 @@
+﻿@model HocDBFirst.Models.PhongBan
+
+<h1>Thêm mới phòng ban</h1>
+
+<form asp-controller="PhongBan" asp-action="Create" method="post">
+    <div class="my-2">
+        <label for="MaPhong">Mã phòng ban</label>
+        <input asp-for="MaPhong" class="form-control" />
+        <span asp-validation-for="MaPhong" class="text-danger"></span>
+    </div>
+
+    <div class="my-2">
+        <label for="TenPhong">Tên phòng ban</label>
+        <input asp-for="TenPhong" class="form-control" />
+        <span asp-validation-for="TenPhong" class="text-danger"></span>
+    </div>
+
+    <div class="my-2">
+        <label for="DienThoai">Điện thoại</label>
+        <input asp-for="DienThoai" class="form-control" />
+        <span asp-validation-for="DienThoai" class="text-danger"></span>
+    </div>
+
+    <div class="my-2">
+        <button type="submit" class="btn btn-primary">Thêm mới</button>
+    </div>
+</form>

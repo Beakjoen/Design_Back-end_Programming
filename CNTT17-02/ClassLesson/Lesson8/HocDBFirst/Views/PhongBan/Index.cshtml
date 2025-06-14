@@ -1,0 +1,31 @@
+﻿@model List<HocDBFirst.Models.PhongBan>
+<h1> Danh sách phòng ban</h1>
+<a href="/PhongBan/Create" class="btn btn-primary mb-2">Thêm mới</a>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Mã phòng ban</th>
+			<th>Tên phòng ban</th>
+			<th>Số điện thoai</th>
+			<th>Chức năng</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.MaPhong</td>
+				<td>@item.TenPhong</td>
+				<td>@item.DienThoai</td>
+				<td>
+					<a class="btn btn-warning"
+					   href="/PhongBan/Edit/@item.MaPhong">Edit</a>
+					&nbsp;
+					<a class="btn btn-danger"
+					   href="/PhongBan/Delete/@item.MaPhong">Delete</a>
+				</td>
+
+			</tr>
+		}
+	</tbody>
+</table>

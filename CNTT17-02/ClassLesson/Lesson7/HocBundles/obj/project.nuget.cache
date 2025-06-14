@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ePStvDczLkA=",
+  "success": true,
+  "projectFilePath": "D:\\CNTT17-02\\ClassLesson\\Lesson7\\HocBundles\\HocBundles.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nguye\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512"
+  ],
+  "logs": []
+}

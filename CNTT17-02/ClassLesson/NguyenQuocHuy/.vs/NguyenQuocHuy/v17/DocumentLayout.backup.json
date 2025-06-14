@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC3F419-3888-43D4-B18D-69911FF7B9BE}|NguyenQuocHuy\\NguyenQuocHuy.csproj|d:\\cntt17-02\\classlesson\\nguyenquochuy\\nguyenquochuy\\controllers\\baivietcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DC3F419-3888-43D4-B18D-69911FF7B9BE}|NguyenQuocHuy\\NguyenQuocHuy.csproj|solutionrelative:nguyenquochuy\\controllers\\baivietcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC3F419-3888-43D4-B18D-69911FF7B9BE}|NguyenQuocHuy\\NguyenQuocHuy.csproj|d:\\cntt17-02\\classlesson\\nguyenquochuy\\nguyenquochuy\\models\\baiviet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DC3F419-3888-43D4-B18D-69911FF7B9BE}|NguyenQuocHuy\\NguyenQuocHuy.csproj|solutionrelative:nguyenquochuy\\models\\baiviet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC3F419-3888-43D4-B18D-69911FF7B9BE}|NguyenQuocHuy\\NguyenQuocHuy.csproj|d:\\cntt17-02\\classlesson\\nguyenquochuy\\nguyenquochuy\\views\\baiviet\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5DC3F419-3888-43D4-B18D-69911FF7B9BE}|NguyenQuocHuy\\NguyenQuocHuy.csproj|solutionrelative:nguyenquochuy\\views\\baiviet\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC3F419-3888-43D4-B18D-69911FF7B9BE}|NguyenQuocHuy\\NguyenQuocHuy.csproj|d:\\cntt17-02\\classlesson\\nguyenquochuy\\nguyenquochuy\\views\\baiviet\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5DC3F419-3888-43D4-B18D-69911FF7B9BE}|NguyenQuocHuy\\NguyenQuocHuy.csproj|solutionrelative:nguyenquochuy\\views\\baiviet\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\NguyenQuocHuy\\Views\\BaiViet\\Create.cshtml",
+              "RelativeDocumentMoniker": "NguyenQuocHuy\\Views\\BaiViet\\Create.cshtml",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\NguyenQuocHuy\\Views\\BaiViet\\Create.cshtml",
+              "RelativeToolTip": "NguyenQuocHuy\\Views\\BaiViet\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T03:16:59.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\NguyenQuocHuy\\Views\\BaiViet\\Index.cshtml",
+              "RelativeDocumentMoniker": "NguyenQuocHuy\\Views\\BaiViet\\Index.cshtml",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\NguyenQuocHuy\\Views\\BaiViet\\Index.cshtml",
+              "RelativeToolTip": "NguyenQuocHuy\\Views\\BaiViet\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T03:11:18.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BaiVietController.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\NguyenQuocHuy\\Controllers\\BaiVietController.cs",
+              "RelativeDocumentMoniker": "NguyenQuocHuy\\Controllers\\BaiVietController.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\NguyenQuocHuy\\Controllers\\BaiVietController.cs",
+              "RelativeToolTip": "NguyenQuocHuy\\Controllers\\BaiVietController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T02:57:57.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BaiViet.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\NguyenQuocHuy\\Models\\BaiViet.cs",
+              "RelativeDocumentMoniker": "NguyenQuocHuy\\Models\\BaiViet.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\NguyenQuocHuy\\NguyenQuocHuy\\Models\\BaiViet.cs",
+              "RelativeToolTip": "NguyenQuocHuy\\Models\\BaiViet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T02:55:31.747Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

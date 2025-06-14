@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CNTT17-02\\ClassLesson\\Lesson7\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{23843FBC-95E7-478F-B821-984D88F7A35D}|HocLinQ\\HocLinQ.csproj|d:\\cntt17-02\\classlesson\\lesson7\\hoclinq\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23843FBC-95E7-478F-B821-984D88F7A35D}|HocLinQ\\HocLinQ.csproj|solutionrelative:hoclinq\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23843FBC-95E7-478F-B821-984D88F7A35D}|HocLinQ\\HocLinQ.csproj|d:\\cntt17-02\\classlesson\\lesson7\\hoclinq\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23843FBC-95E7-478F-B821-984D88F7A35D}|HocLinQ\\HocLinQ.csproj|solutionrelative:hoclinq\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23843FBC-95E7-478F-B821-984D88F7A35D}|HocLinQ\\HocLinQ.csproj|d:\\cntt17-02\\classlesson\\lesson7\\hoclinq\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23843FBC-95E7-478F-B821-984D88F7A35D}|HocLinQ\\HocLinQ.csproj|solutionrelative:hoclinq\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson7\\HocLinQ\\Product.cs",
+              "RelativeDocumentMoniker": "HocLinQ\\Product.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson7\\HocLinQ\\Product.cs",
+              "RelativeToolTip": "HocLinQ\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T01:58:09.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "brand.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson7\\HocLinQ\\brand.cs",
+              "RelativeDocumentMoniker": "HocLinQ\\brand.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson7\\HocLinQ\\brand.cs",
+              "RelativeToolTip": "HocLinQ\\brand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T01:57:48.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\ClassLesson\\Lesson7\\HocLinQ\\Program.cs",
+              "RelativeDocumentMoniker": "HocLinQ\\Program.cs",
+              "ToolTip": "D:\\CNTT17-02\\ClassLesson\\Lesson7\\HocLinQ\\Program.cs",
+              "RelativeToolTip": "HocLinQ\\Program.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAwJUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T01:42:43.586Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

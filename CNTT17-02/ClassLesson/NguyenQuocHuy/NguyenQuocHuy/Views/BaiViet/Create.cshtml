@@ -1,0 +1,27 @@
+﻿@model NguyenQuocHuy.Models.BaiViet
+
+<h1>Thêm bài viết</h1>
+<form asp-action="Create"method="post">
+	<div class="my-1">
+		<label asp-for="MaBaiViet" class="form-label"></label>
+		<input asp-for="MaBaiViet" class="form-control" />
+		<span asp-validation-for="MaBaiViet" class="text-danger"></span>
+	</div>
+	<div class="my-1">
+		<label asp-for="TieuDe" class="form-label"></label>
+		<input asp-for="TieuDe" class="form-control" />
+		<span asp-validation-for="TieuDe" class="text-danger"></span>
+	</div>
+	<div class="my-1">
+		<label asp-for="NoiDung" class="form-label"></label>
+		<textarea asp-for="NoiDung" class="form-control"></textarea>
+		<span asp-validation-for="NoiDung" class="text-danger"></span>
+	</div>
+	
+	<div class="my-1">
+		<label asp-for="NgayPost" class="form-label"></label>
+		<input asp-for="NgayPost" class="form-control" />
+		<span asp-validation-for="NgayPost" class="text-danger"></span>
+	</div>
+	<button type="submit" class="btn btn-primary">Thêm</button>
+</form>

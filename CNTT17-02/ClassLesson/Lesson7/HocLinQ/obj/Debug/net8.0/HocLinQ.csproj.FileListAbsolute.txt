@@ -1,0 +1,14 @@
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\bin\Debug\net8.0\HocLinQ.exe
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\bin\Debug\net8.0\HocLinQ.deps.json
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\bin\Debug\net8.0\HocLinQ.runtimeconfig.json
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\bin\Debug\net8.0\HocLinQ.dll
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\bin\Debug\net8.0\HocLinQ.pdb
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\HocLinQ.GeneratedMSBuildEditorConfig.editorconfig
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\HocLinQ.AssemblyInfoInputs.cache
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\HocLinQ.AssemblyInfo.cs
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\HocLinQ.csproj.CoreCompileInputs.cache
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\HocLinQ.dll
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\refint\HocLinQ.dll
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\HocLinQ.pdb
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\HocLinQ.genruntimeconfig.cache
+D:\CNTT17-02\ClassLesson\Lesson7\HocLinQ\obj\Debug\net8.0\ref\HocLinQ.dll

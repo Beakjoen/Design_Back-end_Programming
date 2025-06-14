@@ -1,0 +1,23 @@
+﻿@model List<HocValkidations.Models.NhanVien>
+
+<h1>Danh sách nhân viên</h1>
+<a href="@Url.Action("Create")">Thêm mới</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Họ tên</th>
+			<th>Tuổi</th>
+			<th>Địa chỉ Email</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.HoTen</td>
+				<td>@item.Tuoi</td>
+				<td>@item.Email</td>
+			</tr>
+		}
+	</tbody>

@@ -1,0 +1,22 @@
+﻿@model HocValkidations.Models.NhanVien
+
+<h1>Thêm nhân viên mới</h1>
+<form asp-action="Create" asp-controller="NhanVien" method="post">
+	<div class="my-1">
+		<label asp-for="HoTen" class="form-label">Họ tên</label>
+		<input asp-for="HoTen" class="form-control" />
+		<span asp-validation-for="HoTen" class="text-danger"></span>
+	</div>
+	<div>
+		<label asp-for="Tuoi" class="form-label">Tuổi</label>
+		<input asp-for="Tuoi" class="form-control" />
+		<span asp-validation-for="Tuoi" class="text-danger"></span>
+	</div>
+	<div>
+		<label asp-for="Email" class="form-label">Địa chỉ Email</label>
+		<input asp-for="Email" class="form-control" />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+	<button type="submit" class="btn btn-primary">Thêm mới</button>
+	<div asp-validation-summary="All"></div>
+</form>
