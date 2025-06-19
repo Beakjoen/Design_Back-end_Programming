@@ -1,0 +1,14 @@
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\bin\Debug\net8.0\LAB02.exe
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\bin\Debug\net8.0\LAB02.deps.json
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\bin\Debug\net8.0\LAB02.runtimeconfig.json
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\bin\Debug\net8.0\LAB02.dll
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\bin\Debug\net8.0\LAB02.pdb
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\LAB02.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\LAB02.AssemblyInfoInputs.cache
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\LAB02.AssemblyInfo.cs
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\LAB02.csproj.CoreCompileInputs.cache
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\LAB02.dll
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\refint\LAB02.dll
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\LAB02.pdb
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\LAB02.genruntimeconfig.cache
+C:\Users\kurinthefox\Downloads\HOC\LAB\LapTrinhBackEnd\LAB02\LAB02\obj\Debug\net8.0\ref\LAB02.dll

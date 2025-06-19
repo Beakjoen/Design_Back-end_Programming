@@ -1,0 +1,14 @@
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\bin\Debug\net8.0\Lab1.5_bai2.exe
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\bin\Debug\net8.0\Lab1.5_bai2.deps.json
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\bin\Debug\net8.0\Lab1.5_bai2.runtimeconfig.json
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\bin\Debug\net8.0\Lab1.5_bai2.dll
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\bin\Debug\net8.0\Lab1.5_bai2.pdb
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\Lab1.5_bai2.GeneratedMSBuildEditorConfig.editorconfig
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\Lab1.5_bai2.AssemblyInfoInputs.cache
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\Lab1.5_bai2.AssemblyInfo.cs
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\Lab1.5_bai2.csproj.CoreCompileInputs.cache
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\Lab1.5_bai2.dll
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\refint\Lab1.5_bai2.dll
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\Lab1.5_bai2.pdb
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\Lab1.5_bai2.genruntimeconfig.cache
+D:\BT_C#\Lab1.5_bai2\Lab1.5_bai2\obj\Debug\net8.0\ref\Lab1.5_bai2.dll
