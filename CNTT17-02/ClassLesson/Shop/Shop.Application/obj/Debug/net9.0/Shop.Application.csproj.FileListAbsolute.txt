@@ -1,0 +1,17 @@
+D:\CNTT17-02\Shop\Shop.Application\bin\Debug\net9.0\Shop.Application.deps.json
+D:\CNTT17-02\Shop\Shop.Application\bin\Debug\net9.0\Shop.Application.runtimeconfig.json
+D:\CNTT17-02\Shop\Shop.Application\bin\Debug\net9.0\Shop.Application.dll
+D:\CNTT17-02\Shop\Shop.Application\bin\Debug\net9.0\Shop.Application.pdb
+D:\CNTT17-02\Shop\Shop.Application\bin\Debug\net9.0\Shop.Domain.dll
+D:\CNTT17-02\Shop\Shop.Application\bin\Debug\net9.0\Shop.Domain.pdb
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.Application.csproj.AssemblyReference.cache
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.Application.AssemblyInfoInputs.cache
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.Application.AssemblyInfo.cs
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.Application.csproj.CoreCompileInputs.cache
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.App.3200E812.Up2Date
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.Application.dll
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\refint\Shop.Application.dll
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.Application.pdb
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\Shop.Application.genruntimeconfig.cache
+D:\CNTT17-02\Shop\Shop.Application\obj\Debug\net9.0\ref\Shop.Application.dll

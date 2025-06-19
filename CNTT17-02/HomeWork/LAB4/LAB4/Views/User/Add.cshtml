@@ -1,0 +1,61 @@
+﻿@model User
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-plus"></i> Thêm người dùng
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form action="/User/Add" method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="id" class="col-form-label font-weight-bold"></label>
+                            <input asp-for="id" class="form-control" placeholder="Nhập mã sinh viên" />
+                            <span asp-validation-for="id" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="username" class="col-form-label font-weight-bold"></label>
+                            <input asp-for="username" class="form-control" type="text" placeholder="Nhập tài khoản (6-20 ký tự)" />
+                            <span asp-validation-for="username" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="password" class="col-form-label font-weight-bold"></label>
+                            <input asp-for="password" class="form-control" type="password" placeholder="Nhập mật khẩu (6-10 ký tự)" />
+                            <span asp-validation-for="password" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="phone" class="col-form-label font-weight-bold"></label>
+                            <input asp-for="phone" class="form-control" type="text" placeholder="Nhập số điện thoại" />
+                            <span asp-validation-for="phone" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="email" class="col-form-label font-weight-bold"></label>
+                            <input asp-for="email" class="form-control" type="email" placeholder="Nhập địa chỉ email" />
+                            <span asp-validation-for="email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-save"></i> Thêm mới
+                            </button>
+                            <a href="/User/Index" class="btn btn-secondary">
+                                <i class="fas fa-list"></i> Danh sách
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

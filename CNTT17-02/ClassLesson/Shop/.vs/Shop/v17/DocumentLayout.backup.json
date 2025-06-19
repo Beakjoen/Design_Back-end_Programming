@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CNTT17-02\\Shop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3AC3EF-B418-4604-B90A-4190F7A8247A}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\cntt17-02\\shop\\shop.infrastructure\\repositories\\repositories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A3AC3EF-B418-4604-B90A-4190F7A8247A}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\repositories\\repositories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C25A95C-61CD-44E8-92F6-9BE530128A61}|Shop.Domain\\Shop.Domain.csproj|d:\\cntt17-02\\shop\\shop.domain\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C25A95C-61CD-44E8-92F6-9BE530128A61}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C25A95C-61CD-44E8-92F6-9BE530128A61}|Shop.Domain\\Shop.Domain.csproj|d:\\cntt17-02\\shop\\shop.domain\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C25A95C-61CD-44E8-92F6-9BE530128A61}|Shop.Domain\\Shop.Domain.csproj|solutionrelative:shop.domain\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3AC3EF-B418-4604-B90A-4190F7A8247A}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\cntt17-02\\shop\\shop.infrastructure\\data\\shopdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A3AC3EF-B418-4604-B90A-4190F7A8247A}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\data\\shopdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3AC3EF-B418-4604-B90A-4190F7A8247A}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\cntt17-02\\shop\\shop.infrastructure\\shop.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4A3AC3EF-B418-4604-B90A-4190F7A8247A}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\shop.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Category.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\Shop\\Shop.Domain\\Entities\\Category.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\Entities\\Category.cs",
+              "ToolTip": "D:\\CNTT17-02\\Shop\\Shop.Domain\\Entities\\Category.cs",
+              "RelativeToolTip": "Shop.Domain\\Entities\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T07:06:49.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Repositories.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\Shop\\Shop.Infrastructure\\Repositories\\Repositories.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Repositories\\Repositories.cs",
+              "ToolTip": "D:\\CNTT17-02\\Shop\\Shop.Infrastructure\\Repositories\\Repositories.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Repositories\\Repositories.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T04:19:52.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\Shop\\Shop.Domain\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Domain\\Interfaces\\IRepository.cs",
+              "ToolTip": "D:\\CNTT17-02\\Shop\\Shop.Domain\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "Shop.Domain\\Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T04:15:05.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ShopDbContext.cs",
+              "DocumentMoniker": "D:\\CNTT17-02\\Shop\\Shop.Infrastructure\\Data\\ShopDbContext.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Data\\ShopDbContext.cs",
+              "ToolTip": "D:\\CNTT17-02\\Shop\\Shop.Infrastructure\\Data\\ShopDbContext.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Data\\ShopDbContext.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T04:00:47.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Shop.Infrastructure.csproj",
+              "DocumentMoniker": "D:\\CNTT17-02\\Shop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Shop.Infrastructure.csproj",
+              "ToolTip": "D:\\CNTT17-02\\Shop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+              "RelativeToolTip": "Shop.Infrastructure\\Shop.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-12T03:57:59.898Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

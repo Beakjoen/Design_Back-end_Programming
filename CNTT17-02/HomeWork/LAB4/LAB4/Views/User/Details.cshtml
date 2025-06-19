@@ -1,0 +1,76 @@
+﻿@model User
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-user"></i> Chi tiết người dùng
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong><i class="fas fa-id-badge"></i> Mã sinh viên:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            <span class="badge badge-primary">@Model.id</span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong><i class="fas fa-user-circle"></i> Tài khoản:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            @Model.username
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong><i class="fas fa-envelope"></i> Email:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            <a href="mailto:@Model.email" class="text-decoration-none">@Model.email</a>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <strong><i class="fas fa-phone"></i> Điện thoại:</strong>
+                        </div>
+                        <div class="col-sm-8">
+                            <a href="tel:@Model.phone" class="text-decoration-none">@Model.phone</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light">
+                    <div class="btn-group w-100" role="group">
+                        <a href="/User/Edit/@Model.id" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Sửa
+                        </a>
+                        <a href="/User/Index" class="btn btn-secondary">
+                            <i class="fas fa-list"></i> Danh sách
+                        </a>
+                        <a href="/User/Delete/@Model.id" class="btn btn-danger"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng @Model.username?')">
+                            <i class="fas fa-trash"></i> Xóa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .badge-primary {
+        background-color: #007bff;
+    }
+
+    .btn-group .btn {
+        flex: 1;
+    }
+</style>

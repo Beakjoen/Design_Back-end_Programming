@@ -1,0 +1,212 @@
+﻿@model Tuple<List<Category>, List<Brand>, List<Product>>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-2">
+        <div class="accordion" id="filterAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCategory">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="true" aria-controls="collapseCategory">
+                        Category
+                    </button>
+                </h2>
+                <div id="collapseCategory" class="accordion-collapse collapse show" aria-labelledby="headingCategory">
+                    <div class="accordion-body">
+                        <ul class="list-group list-group-flush">
+                            @foreach (var category in Model.Item1)
+                            {
+                                <li class="list-group-item py-0 small" role="button" onclick="fetchProduct({ category: '@category.Name' })">
+                                    @category.Name
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingBrand">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBrand" aria-expanded="true" aria-controls="collapseBrand">
+                        Brand
+                    </button>
+                </h2>
+                <div id="collapseBrand" class="accordion-collapse collapse show" aria-labelledby="headingBrand">
+                    <div class="accordion-body">
+                        @foreach (var brand in Model.Item2)
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input brand-checkbox" type="checkbox" value="@brand.Name" id="brandChecked@(brand.Id)" onchange="filterBrands()" />
+                                <label class="form-check-label" for="brandChecked@(brand.Id)">@brand.Name</label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPrice">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice">
+                        Price Range
+                    </button>
+                </h2>
+                <div id="collapsePrice" class="accordion-collapse collapse show" aria-labelledby="headingPrice">
+                    <div class="accordion-body">
+                        <div class="d-flex">
+                            <div class="form-group col-md-6 px-1">
+                                <label>Min</label>
+                                <input id="min-price" class="form-control" placeholder="$0" type="number">
+                            </div>
+                            <div class="form-group col-md-6 px-1 text-right">
+                                <label>Max</label>
+                                <input id="max-price" class="form-control" placeholder="$10000" type="number">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary col-12 mt-3" onclick="applyPrice()">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFreeShipping">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFreeShipping" aria-expanded="true" aria-controls="collapseFreeShipping">
+                        Free Shipping
+                    </button>
+                </h2>
+                <div id="collapseFreeShipping" class="accordion-collapse collapse show" aria-labelledby="headingFreeShipping">
+                    <div class="accordion-body">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="freeShippingChecked" onchange="filterFreeShipping()" />
+                            <label class="form-check-label" for="freeShippingChecked">
+                                Only show Free Shipping products
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-10">
+        <div class="border-bottom d-flex justify-content-between pb-3">
+            <h4 id="count-product">@Model.Item3.Count Items found</h4>
+            <div class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                <button class="btn btn-success" onclick="search()">Search</button>
+            </div>
+        </div>
+
+        <div class="row mt-3" id="list-product">
+            @foreach (var product in Model.Item3)
+            {
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img src="@product.ImageUrl" class="img-fluid rounded" alt="@product.Name" />
+                        <div class="card-body">
+                            <h6>@product.Name</h6>
+                            <div class="d-flex flex-row align-items-center mb-1">
+                                <h4 class="mb-1 me-1">$@product.SalePrice</h4>
+                                <span class="text-danger"><s>$@product.OriginalPrice</s></span>
+                            </div>
+                            <h6 class="@(product.IsFreeShipping ? "text-success" : "text-danger")">
+                                @(product.IsFreeShipping ? "Free" : "Paid") shipping
+                            </h6>
+                            <div>
+                                <button class="btn btn-primary" type="button">Buy this</button>
+                                <a href="#" class="btn btn-light border px-2 pt-2">
+                                    <i class="bi bi-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function fetchProduct(filters) {
+            let apiUrl = `@Url.Action("Filters", "Product")?`;
+
+            for (const key in filters) {
+                if (filters[key] !== undefined && filters[key] !== null) { 
+                    apiUrl += `${key}=${encodeURIComponent(filters[key])}&`;
+                }
+            }
+
+            apiUrl = apiUrl.replace(/&$/, "");
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(products => {
+                    let content = "";
+                    products.forEach(product => {
+                        content += `
+                        <div class="col-md-3 mb-3">
+                            <div class="card">
+                                <img src="${product.imageUrl}" class="img-fluid rounded" alt="${product.name}" />
+                                <div class="card-body">
+                                    <h6>${product.name}</h6>
+                                    <div class="d-flex flex-row align-items-center mb-1">
+                                        <h4 class="mb-1 me-1">$${product.salePrice}</h4>
+                                        <span class="text-danger"><s>$${product.originalPrice}</s></span>
+                                    </div>
+                                    <h6 class="${product.isFreeShipping ? 'text-success' : 'text-danger'}">
+                                        ${product.isFreeShipping ? 'Free' : 'Paid'} shipping
+                                    </h6>
+                                    <div>
+                                        <button class="btn btn-primary" type="button">Buy this</button>
+                                        <a href="#" class="btn btn-light border px-2 pt-2">
+                                            <i class="bi bi-heart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    });
+
+                    document.getElementById("list-product").innerHTML = content;
+                    document.getElementById("count-product").innerText = `${products.length} Items found`;
+                })
+                .catch(error => console.error(error));
+        }
+
+        let currentFilters = {};
+
+        function updateAndFetchProducts(newFilters) {
+            currentFilters = { ...currentFilters, ...newFilters };
+            fetchProduct(currentFilters);
+        }
+
+        function search() {
+            const searchValue = document.getElementById("search-input").value;
+            updateAndFetchProducts({ searchValue: searchValue, page: 1 });
+        }
+
+        function filterBrands() {
+            const selectedBrands = [];
+            document.querySelectorAll(".brand-checkbox").forEach(cb => {
+                if (cb.checked) selectedBrands.push(cb.value);
+            });
+            updateAndFetchProducts({ brands: selectedBrands.join(','), page: 1 });
+        }
+
+        function applyPrice() {
+            const min = document.getElementById("min-price").value;
+            const max = document.getElementById("max-price").value;
+            updateAndFetchProducts({ minPrice: min, maxPrice: max, page: 1 });
+        }
+
+        function filterFreeShipping() {
+            const freeShippingChecked = document.getElementById("freeShippingChecked").checked;
+            updateAndFetchProducts({ freeShipping: freeShippingChecked || null, page: 1 });
+        }
+
+
+    </script>
+}
