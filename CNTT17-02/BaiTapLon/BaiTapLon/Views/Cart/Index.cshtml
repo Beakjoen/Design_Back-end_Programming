@@ -1,0 +1,82 @@
+@model List<BaiTapLon.Models.CartItem>
+@{
+    ViewData["Title"] = "Giỏ hàng của bạn";
+}
+<h2 class="mb-4">@ViewData["Title"]</h2>
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning text-center">Giỏ hàng của bạn đang trống. <a href="/">Mua sắm ngay!</a></div>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="table-responsive">
+                <table class="table align-middle table-bordered shadow-sm bg-white">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="@item.Product?.ImageUrl" alt="@item.Product?.Name" style="width:60px;height:60px;object-fit:cover;" class="rounded me-2" />
+                                        <span>@item.Product?.Name</span>
+                                    </div>
+                                </td>
+                                <td class="text-danger fw-bold">@(item.Product?.DiscountPrice?.ToString("N0") ?? item.Product?.Price.ToString("N0")) VNĐ</td>
+                                <td>@item.Quantity</td>
+                                <td class="fw-bold">@(((item.Product?.DiscountPrice ?? item.Product?.Price ?? 0) * item.Quantity).ToString("N0")) VNĐ</td>
+                                <td>
+                                    <a href="@Url.Action("RemoveFromCart", "Cart", new { productId = item.ProductId })" class="btn btn-outline-danger btn-sm">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mt-3">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Tổng đơn hàng</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Tạm tính:</span>
+                        <span>@ViewBag.Subtotal.ToString("N0") VNĐ</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Phí vận chuyển:</span>
+                        <span>@ViewBag.ShippingFee.ToString("N0") VNĐ</span>
+                    </div>
+                    @if (ViewBag.DiscountAmount > 0)
+                    {
+                        <div class="d-flex justify-content-between mb-2 text-success">
+                            <span>Giảm giá (@ViewBag.AppliedPromotion):</span>
+                            <span>-@ViewBag.DiscountAmount.ToString("N0") VNĐ</span>
+                        </div>
+                    }
+                    <div class="d-flex justify-content-between fw-bold fs-5 border-top pt-2">
+                        <span>Tổng cộng:</span>
+                        <span class="text-danger">@ViewBag.Total.ToString("N0") VNĐ</span>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-3">
+                        <a href="@Url.Action("Checkout", "Order")" class="btn btn-primary btn-lg">Thanh toán</a>
+                        <a href="@Url.Action("ClearCart", "Cart")" class="btn btn-outline-secondary" onclick="return confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng?')">Xóa giỏ hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+} 

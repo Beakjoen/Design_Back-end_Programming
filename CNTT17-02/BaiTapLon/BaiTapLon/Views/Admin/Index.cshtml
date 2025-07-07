@@ -1,0 +1,96 @@
+@* View mẫu trang tổng quan admin *@
+@{
+    ViewData["Title"] = "Quản trị hệ thống";
+}
+<h2 class="mb-4">Quản trị hệ thống</h2>
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Sản phẩm</div>
+                <div class="display-6">@ViewBag.TotalProducts</div>
+                <a href="@Url.Action("ProductManager", "Admin")" class="btn btn-outline-primary btn-sm mt-2">Quản lý sản phẩm</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Đơn hàng</div>
+                <div class="display-6">@ViewBag.TotalOrders</div>
+                <a href="@Url.Action("OrderManager", "Admin")" class="btn btn-outline-primary btn-sm mt-2">Quản lý đơn hàng</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Người dùng</div>
+                <div class="display-6">@ViewBag.TotalUsers</div>
+                <a href="@Url.Action("UserManager", "Admin")" class="btn btn-outline-primary btn-sm mt-2">Quản lý người dùng</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Doanh thu</div>
+                <div class="display-6 text-success">@ViewBag.TotalRevenue.ToString("N0") <text>VNĐ</text></div>
+                @if (ViewBag.MonthRevenue != null && ViewBag.MonthRevenue > 0) {
+                    <div class="small text-muted">Tháng này: <span class="fw-bold text-primary">@ViewBag.MonthRevenue.ToString("N0") <text>VNĐ</text></span></div>
+                }
+                <a href="@Url.Action("Statistics", "Admin")" class="btn btn-outline-primary btn-sm mt-2">Thống kê</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light fw-bold">Đơn hàng gần đây</div>
+            <div class="card-body p-2">
+                <table class="table table-sm mb-0">
+                    <thead><tr><th>Mã</th><th>Khách</th><th>Ngày</th><th>Tổng</th></tr></thead>
+                    <tbody>
+                        @foreach (var o in ViewBag.RecentOrders ?? new List<BaiTapLon.Models.Order>())
+                        {
+                            <tr>
+                                <td>@o.Id</td>
+                                <td>@o.User?.FullName</td>
+                                <td>@o.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td class="text-danger">@o.TotalAmount.ToString("N0") VNĐ</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light fw-bold">Top sản phẩm bán chạy</div>
+            <div class="card-body p-2">
+                <table class="table table-sm mb-0">
+                    <thead><tr><th>Sản phẩm</th><th>SL bán</th></tr></thead>
+                    <tbody>
+                        @foreach (var p in ViewBag.BestSellingProducts ?? new List<dynamic>())
+                        {
+                            <tr>
+                                <td>@p.Product?.Name</td>
+                                <td>@p.TotalSold</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <a href="@Url.Action("PromotionManager", "Admin")" class="btn btn-outline-success w-100 mb-2">Quản lý khuyến mãi</a>
+    </div>
+    <div class="col-md-3">
+        <a href="@Url.Action("ReviewManager", "Admin")" class="btn btn-outline-info w-100 mb-2">Quản lý đánh giá</a>
+    </div>
+</div> 

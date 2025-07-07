@@ -1,0 +1,62 @@
+@model List<BaiTapLon.Models.Order>
+@{
+    ViewData["Title"] = "Lịch sử mua hàng";
+}
+<h2 class="mb-4">Lịch sử mua hàng</h2>
+<form asp-action="ClearOrderHistory" asp-controller="Order" method="post" class="mb-3" onsubmit="return confirm('Bạn có chắc muốn xóa toàn bộ lịch sử mua hàng?');">
+    <button type="submit" class="btn btn-danger">Xóa toàn bộ lịch sử mua hàng</button>
+</form>
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Bạn chưa có đơn hàng nào.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle bg-white">
+            <thead class="table-light">
+                <tr>
+                    <th>Mã đơn</th>
+                    <th>Ngày đặt</th>
+                    <th>Trạng thái</th>
+                    <th>Tổng tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            @if (order.Status == "Hoàn thành" || order.Status == "Completed")
+                            {
+                                <span class="badge bg-success">Hoàn thành</span>
+                            }
+                            else if (order.Status == "Chờ xác nhận" || order.Status == "Pending")
+                            {
+                                <span class="badge bg-warning text-dark">Chờ xử lý</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">@order.Status</span>
+                            }
+                        </td>
+                        <td class="text-danger fw-bold">@order.TotalAmount.ToString("N0") VNĐ</td>
+                        <td>
+                            <a href="@Url.Action("OrderDetail", "Order", new { id = order.Id })" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+                            @if (order.Status == "Chờ xác nhận")
+                            {
+                                <form asp-action="CancelOrder" asp-controller="Order" method="post" style="display:inline" onsubmit="return confirm('Bạn có chắc muốn hủy đơn hàng này?');">
+                                    <input type="hidden" name="id" value="@order.Id" />
+                                    <button type="submit" class="btn btn-outline-danger btn-sm ms-1">Hủy đơn</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+} 

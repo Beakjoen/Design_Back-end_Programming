@@ -1,0 +1,65 @@
+@model BaiTapLon.Models.Order
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+}
+<h2 class="mb-4">Chi tiết đơn hàng #@Model.Id</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header bg-light fw-bold">Thông tin đơn hàng</div>
+            <div class="card-body">
+                <p><b>Ngày đặt:</b> @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</p>
+                <p><b>Trạng thái:</b> <span class="badge bg-info">@Model.Status</span></p>
+                <p><b>Tổng tiền:</b> <span class="text-danger fw-bold">@Model.TotalAmount.ToString("N0") VNĐ</span></p>
+                @if (!string.IsNullOrEmpty(Model.PromotionCode))
+                {
+                    <p><b>Mã khuyến mãi:</b> <span class="text-success">@Model.PromotionCode</span></p>
+                }
+                <p><b>Phương thức thanh toán:</b> @Model.PaymentMethod</p>
+                <p><b>Ghi chú:</b> @Model.Note</p>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header bg-light fw-bold">Thông tin giao hàng</div>
+            <div class="card-body">
+                <p><b>Họ tên:</b> @Model.User?.FullName</p>
+                <p><b>Địa chỉ:</b> @Model.ShippingAddress</p>
+                <p><b>Số điện thoại:</b> @Model.Phone</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-light fw-bold">Sản phẩm trong đơn</div>
+            <div class="card-body">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>SL</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderDetails)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="@item.Product?.ImageUrl" alt="@item.Product?.Name" style="width:40px;height:40px;object-fit:cover;" class="rounded me-2" />
+                                        <span>@item.Product?.Name</span>
+                                    </div>
+                                </td>
+                                <td class="text-danger">@(item.DiscountUnitPrice?.ToString("N0") ?? item.UnitPrice.ToString("N0")) VNĐ</td>
+                                <td>@item.Quantity</td>
+                                <td class="fw-bold">@item.TotalLine.ToString("N0") VNĐ</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="@Url.Action("OrderHistory", "Account")" class="btn btn-secondary mt-4">Quay lại lịch sử mua hàng</a> 

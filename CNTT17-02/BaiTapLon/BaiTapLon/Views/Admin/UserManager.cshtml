@@ -1,0 +1,41 @@
+@model IEnumerable<BaiTapLon.Models.User>
+@{
+    ViewData["Title"] = "Quản lý người dùng";
+}
+<h2 class="mb-4">@ViewData["Title"]</h2>
+@if (TempData["ResetPasswordInfo"] != null)
+{
+    <div class="alert alert-success">@Html.Raw(TempData["ResetPasswordInfo"])</div>
+}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle shadow-sm bg-white">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Tài khoản</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Quyền</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.UserName</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td>@(item.IsAdmin ? "Admin" : "Khách hàng")</td>
+                    <td>
+                        <form asp-action="AdminResetPassword" asp-controller="Admin" method="post" style="display:inline;">
+                            <input type="hidden" name="userId" value="@item.Id" />
+                            <button type="submit" class="btn btn-sm btn-warning" onclick="return confirm('Đặt lại mật khẩu cho tài khoản @item.UserName?')">Đặt lại mật khẩu</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> 

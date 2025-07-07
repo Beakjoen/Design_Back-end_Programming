@@ -1,0 +1,112 @@
+﻿@using System.Text.Json
+@{
+    var isLoggedIn = Context.Session.GetString("User") != null;
+    BaiTapLon.Models.User? currentUser = null;
+    if (isLoggedIn)
+    {
+        var userJson = Context.Session.GetString("User");
+        if (!string.IsNullOrEmpty(userJson))
+        {
+            currentUser = JsonSerializer.Deserialize<BaiTapLon.Models.User>(userJson);
+        }
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BaiTapLon</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .main-header { background: #ff6600; color: #fff; padding: 0.5rem 0; }
+        .main-header .navbar-brand { font-weight: bold; font-size: 2rem; color: #fff; }
+        .main-header .nav-link, .main-header .navbar-nav .nav-link.active { color: #fff !important; }
+        .main-header .nav-link:hover { color: #333 !important; background: #fff2e6; border-radius: 5px; }
+        .main-header .hotline { font-weight: bold; color: #fff; margin-left: 2rem; }
+        .footer { background: #222; color: #fff; padding: 2rem 0; margin-top: 2rem; }
+        .footer a { color: #ff6600; }
+        .footer a:hover { color: #fff; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header class="main-header shadow-sm mb-4">
+        <nav class="navbar navbar-expand-lg container">
+            <a class="navbar-brand" href="/">QUẠT TRẦN STORE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Product">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Cart">Giỏ hàng</a></li>
+                </ul>
+                <form class="d-flex" method="get" action="/Product">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Tìm sản phẩm..." aria-label="Search">
+                    <button class="btn btn-light" type="submit">Tìm</button>
+                </form>
+                <span class="hotline ms-4">Hotline: 0383142174</span>
+                @if (isLoggedIn && currentUser != null)
+                {
+                    <div class="dropdown ms-4">
+                        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span style="width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#ff6600;font-weight:bold;border-radius:50%;font-size:1.2rem;">
+                                @{
+                                    var userInitial = string.IsNullOrEmpty(currentUser?.FullName) ? "U" : currentUser.FullName.Trim().Substring(0, 1).ToUpper();
+                                }
+                                @userInitial
+                            </span>
+                            <span class="ms-2 fw-bold">@currentUser?.FullName</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="/Account/OrderLookup">Tra cứu đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="/Account/OrderHistory">Lịch sử mua hàng</a></li>
+                            <li><a class="dropdown-item" href="/Account/Promotion">Lấy mã khuyến mãi</a></li>
+                            <li><a class="dropdown-item" href="/Account/ViewedProducts">Sản phẩm đã xem</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="/Account/Logout">Đăng xuất</a></li>
+                            @if (currentUser?.IsAdmin == true)
+                            {
+                                <li><a class="dropdown-item" href="/Admin">Quản trị</a></li>
+                            }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="ms-4">
+                        <a class="btn btn-light me-2" href="/Account/Login">Đăng nhập</a>
+                        <a class="btn btn-outline-light" href="/Account/Register">Đăng ký</a>
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+    <main class="container pb-4">
+        @RenderBody()
+    </main>
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-md-start mb-2 mb-md-0">
+                    <b>QUẠT TRẦN STORE</b> - Địa chỉ: 123 Đường Lớn, Hà Nội<br />
+                    Email: <a href="mailto:nguyenhuy2k05@gmail.com">nguyenhuy2k05@gmail.com</a> | Hotline: 0383142174
+                </div>
+                <div class="col-md-6 text-md-end">
+                    © @DateTime.Now.Year - BaiTapLon | <a href="/Privacy">Chính sách bảo mật</a>
+                    <br />
+                    <a href="#"><img src="https://img.icons8.com/ios-filled/24/ff6600/facebook-new.png" alt="Facebook" /></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-filled/24/ff6600/instagram-new.png" alt="Instagram" /></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-filled/24/ff6600/youtube-play.png" alt="YouTube" /></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

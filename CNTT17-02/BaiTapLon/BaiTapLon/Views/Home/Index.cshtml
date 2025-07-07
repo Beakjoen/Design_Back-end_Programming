@@ -1,0 +1,84 @@
+﻿@model IEnumerable<BaiTapLon.Models.Product>
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+@* Banner Big Sale *@
+<div class="banner-sale" style="background: linear-gradient(90deg, #ff512f 0%, #f09819 100%); color: #fff; padding: 60px 0; text-align: center; position: relative; border-radius: 16px; margin-bottom: 32px; overflow: hidden;">
+    <div style="font-size: 3rem; font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 8px #d35400;">BIG SALE</div>
+    <div style="font-size: 1.5rem; margin: 10px 0;">
+        Giảm giá lên đến <span style="color: #ffe066; font-size: 2rem; font-weight: bold;">40%</span> cho quạt trần chính hãng
+    </div>
+    <a href="/Product" class="btn btn-warning btn-lg mt-3" style="font-weight: bold; font-size: 1.2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">Mua ngay</a>
+    <div style="position: absolute; right: 30px; bottom: 10px; opacity: 0.18;">
+        <i class="fas fa-bolt fa-5x"></i>
+    </div>
+</div>
+
+@* Section Sản phẩm giảm 40% *@
+@if (ViewBag.Sale40Products != null && ((IEnumerable<BaiTapLon.Models.Product>)ViewBag.Sale40Products).Any())
+{
+    <div class="mb-5">
+        <h3 class="mb-4" style="color:#ff512f;font-weight:bold;">Sản phẩm giảm 40%</h3>
+        <div id="sale40Carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @{
+                    var saleList = (IEnumerable<BaiTapLon.Models.Product>)ViewBag.Sale40Products;
+                    int idx = 0;
+                    foreach (var item in saleList)
+                    {
+                        <div class="carousel-item @(idx == 0 ? "active" : "")">
+                            <div class="card h-100 shadow-sm border-0 position-relative mx-auto" style="width: 18rem;">
+                                <span class="badge bg-danger position-absolute" style="top:10px;left:10px;font-size:1rem;z-index:2;">-40%</span>
+                                <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height:180px;object-fit:cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Name</h5>
+                                    <p class="card-text">@item.Description</p>
+                                    <p class="card-text">
+                                        <span class="text-danger fw-bold">@((item.Price * 0.6M).ToString("N0")) VNĐ</span>
+                                        <span class="text-muted ms-2" style="text-decoration:line-through;">@item.Price.ToString("N0") VNĐ</span>
+                                    </p>
+                                    <a href="@Url.Action("Details", "Product", new { id = item.Id })" class="btn btn-primary">Xem chi tiết</a>
+                                    <a href="@Url.Action("AddToCart", "Cart", new { productId = item.Id })" class="btn btn-success ms-2">Thêm vào giỏ</a>
+                                </div>
+                            </div>
+                        </div>
+                        idx++;
+                    }
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#sale40Carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#sale40Carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+}
+
+@* Phần còn lại của trang chủ *@
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info">Chưa có sản phẩm nào trong cửa hàng.</div>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height:200px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text text-danger fw-bold">@item.Price.ToString("N0") <text>VNĐ</text></p>
+                        <a href="@Url.Action("Details", "Product", new { id = item.Id })" class="btn btn-primary">Xem chi tiết</a>
+                        <a href="@Url.Action("AddToCart", "Cart", new { productId = item.Id })" class="btn btn-success ms-2">Thêm vào giỏ</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

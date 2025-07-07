@@ -1,0 +1,57 @@
+@* View mẫu quản lý đơn hàng *@
+@model IEnumerable<BaiTapLon.Models.Order>
+@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+}
+<h2 class="mb-4">@ViewData["Title"]</h2>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Chưa có đơn hàng nào.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle shadow-sm bg-white">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Khách hàng</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.User?.FullName</td>
+                        <td>@item.OrderDate.ToString("dd/MM/yyyy")</td>
+                        <td>@item.TotalAmount.ToString("N0") VNĐ</td>
+                        <td>@item.Status</td>
+                        <td>
+                            @if (item.Status == "Chờ xác nhận")
+                            {
+                                <form asp-action="UpdateOrderStatus" asp-controller="Admin" method="post" style="display:inline;">
+                                    <input type="hidden" name="orderId" value="@item.Id" />
+                                    <input type="hidden" name="status" value="Đang xử lý" />
+                                    <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Xác nhận đơn hàng này?')">Xác nhận</button>
+                                </form>
+                            }
+                            else if (item.Status == "Đang xử lý")
+                            {
+                                <form asp-action="UpdateOrderStatus" asp-controller="Admin" method="post" style="display:inline;">
+                                    <input type="hidden" name="orderId" value="@item.Id" />
+                                    <input type="hidden" name="status" value="Hoàn thành" />
+                                    <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Đơn đã hoàn tất xử lý và giao hàng?')">Hoàn tất</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+} 

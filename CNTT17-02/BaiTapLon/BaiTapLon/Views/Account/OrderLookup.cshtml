@@ -1,0 +1,30 @@
+@model BaiTapLon.Models.Order
+@{
+    ViewData["Title"] = "Tra cứu đơn hàng";
+}
+<h2 class="mb-4">Tra cứu đơn hàng</h2>
+<form method="get" class="row g-3 mb-4">
+    <div class="col-auto">
+        <input type="text" name="orderId" class="form-control" placeholder="Nhập mã đơn hàng..." required />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Tra cứu</button>
+    </div>
+</form>
+@if (Model != null)
+{
+    <div class="card shadow-sm">
+        <div class="card-header bg-light fw-bold">Thông tin đơn hàng</div>
+        <div class="card-body">
+            <p><b>Mã đơn:</b> @Model.Id</p>
+            <p><b>Ngày đặt:</b> @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</p>
+            <p><b>Trạng thái:</b> <span class="badge bg-info">@Model.Status</span></p>
+            <p><b>Tổng tiền:</b> <span class="text-danger fw-bold">@Model.TotalAmount.ToString("N0") VNĐ</span></p>
+            <a href="@Url.Action("OrderDetail", "Order", new { id = Model.Id })" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+        </div>
+    </div>
+}
+else if (Context.Request.Query.ContainsKey("orderId"))
+{
+    <div class="alert alert-warning">Không tìm thấy đơn hàng.</div>
+} 

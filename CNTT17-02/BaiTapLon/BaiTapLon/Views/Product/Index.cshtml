@@ -1,0 +1,663 @@
+@model IEnumerable<BaiTapLon.Models.Product>
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+@if (TempData["AddToCartSuccess"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["AddToCartSuccess"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!-- Banner/Slider -->
+<div id="mainBanner" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://meta.vn/Data/image/2021/07/12/banner-quat-tran-meta.jpg" class="d-block w-100" style="max-height:320px;object-fit:cover;" alt="Banner 1">
+        </div>
+        <div class="carousel-item">
+            <img src="https://meta.vn/Data/image/2022/03/10/banner-quat-tran-2.jpg" class="d-block w-100" style="max-height:320px;object-fit:cover;" alt="Banner 2">
+        </div>
+        <div class="carousel-item">
+            <img src="https://meta.vn/Data/image/2022/03/10/banner-quat-tran-3.jpg" class="d-block w-100" style="max-height:320px;object-fit:cover;" alt="Banner 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainBanner" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainBanner" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Filter Tags -->
+@{
+    var hasActiveFilters = !string.IsNullOrEmpty(ViewBag.Search) || ViewBag.CategoryId != null || 
+                          !string.IsNullOrEmpty(ViewBag.PriceRange) || !string.IsNullOrEmpty(ViewBag.Brand) ||
+                          !string.IsNullOrEmpty(ViewBag.ProductType) || !string.IsNullOrEmpty(ViewBag.BladeCount) ||
+                          !string.IsNullOrEmpty(ViewBag.Material) || !string.IsNullOrEmpty(ViewBag.Feature) ||
+                          !string.IsNullOrEmpty(ViewBag.Rating) || !string.IsNullOrEmpty(ViewBag.StockStatus) ||
+                          ViewBag.HasDiscount == true || ViewBag.Featured == true || ViewBag.BestSeller == true;
+}
+
+@if (hasActiveFilters)
+{
+    <div class="mb-3">
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span class="text-muted">Bộ lọc đang áp dụng:</span>
+            @if (!string.IsNullOrEmpty(ViewBag.Search))
+            {
+                <span class="badge bg-primary">
+                    Tìm kiếm: "@ViewBag.Search"
+                    <a href="@Url.Action("Index", new { 
+                        categoryId = ViewBag.CategoryId, 
+                        priceRange = ViewBag.PriceRange, 
+                        sort = ViewBag.Sort, 
+                        page = 1, 
+                        pageSize = ViewBag.PageSize,
+                        brand = ViewBag.Brand,
+                        productType = ViewBag.ProductType,
+                        bladeCount = ViewBag.BladeCount,
+                        material = ViewBag.Material,
+                        feature = ViewBag.Feature,
+                        rating = ViewBag.Rating,
+                        stockStatus = ViewBag.StockStatus,
+                        hasDiscount = ViewBag.HasDiscount,
+                        featured = ViewBag.Featured,
+                        bestSeller = ViewBag.BestSeller
+                    })" class="text-white text-decoration-none ms-1">×</a>
+                </span>
+            }
+            @if (ViewBag.CategoryId != null)
+            {
+                dynamic foundCategory = null;
+                if (ViewBag.Categories != null)
+                {
+                    foreach (var cat in ViewBag.Categories)
+                    {
+                        if ((cat.Id is int id) && id == (int)ViewBag.CategoryId)
+                        {
+                            foundCategory = cat;
+                            break;
+                        }
+                    }
+                }
+                if (foundCategory != null)
+                {
+                    <span class="badge bg-info">
+                        Danh mục: @foundCategory.Name
+                        <a href="@Url.Action("Index", new { 
+                            search = ViewBag.Search, 
+                            priceRange = ViewBag.PriceRange, 
+                            sort = ViewBag.Sort, 
+                            page = 1, 
+                            pageSize = ViewBag.PageSize,
+                            brand = ViewBag.Brand,
+                            productType = ViewBag.ProductType,
+                            bladeCount = ViewBag.BladeCount,
+                            material = ViewBag.Material,
+                            feature = ViewBag.Feature,
+                            rating = ViewBag.Rating,
+                            stockStatus = ViewBag.StockStatus,
+                            hasDiscount = ViewBag.HasDiscount,
+                            featured = ViewBag.Featured,
+                            bestSeller = ViewBag.BestSeller
+                        })" class="text-white text-decoration-none ms-1">×</a>
+                    </span>
+                }
+            }
+            @if (!string.IsNullOrEmpty(ViewBag.Brand))
+            {
+                var brandName = ViewBag.Brand switch
+                {
+                    "panasonic" => "Panasonic",
+                    "kdk" => "KDK",
+                    "mitsubishi" => "Mitsubishi",
+                    "vinawind" => "Vinawind",
+                    "kimthuanphong" => "Kim Thuận Phong",
+                    "other" => "Thương hiệu khác",
+                    _ => ViewBag.Brand
+                };
+                <span class="badge bg-success">
+                    Thương hiệu: @brandName
+                    <a href="@Url.Action("Index", new { 
+                        search = ViewBag.Search, 
+                        categoryId = ViewBag.CategoryId, 
+                        priceRange = ViewBag.PriceRange, 
+                        sort = ViewBag.Sort, 
+                        page = 1, 
+                        pageSize = ViewBag.PageSize,
+                        productType = ViewBag.ProductType,
+                        bladeCount = ViewBag.BladeCount,
+                        material = ViewBag.Material,
+                        feature = ViewBag.Feature,
+                        rating = ViewBag.Rating,
+                        stockStatus = ViewBag.StockStatus,
+                        hasDiscount = ViewBag.HasDiscount,
+                        featured = ViewBag.Featured,
+                        bestSeller = ViewBag.BestSeller
+                    })" class="text-white text-decoration-none ms-1">×</a>
+                </span>
+            }
+            @if (ViewBag.HasDiscount == true)
+            {
+                <span class="badge bg-warning">
+                    Có giảm giá
+                    <a href="@Url.Action("Index", new { 
+                        search = ViewBag.Search, 
+                        categoryId = ViewBag.CategoryId, 
+                        priceRange = ViewBag.PriceRange, 
+                        sort = ViewBag.Sort, 
+                        page = 1, 
+                        pageSize = ViewBag.PageSize,
+                        brand = ViewBag.Brand,
+                        productType = ViewBag.ProductType,
+                        bladeCount = ViewBag.BladeCount,
+                        material = ViewBag.Material,
+                        feature = ViewBag.Feature,
+                        rating = ViewBag.Rating,
+                        stockStatus = ViewBag.StockStatus,
+                        featured = ViewBag.Featured,
+                        bestSeller = ViewBag.BestSeller
+                    })" class="text-white text-decoration-none ms-1">×</a>
+                </span>
+            }
+            <a href="@Url.Action("Index")" class="btn btn-outline-secondary btn-sm">Xóa tất cả bộ lọc</a>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <!-- Sidebar Filter -->
+    <div class="col-lg-3">
+        <div class="card filter-card filter-sidebar mb-4">
+            <div class="card-header text-white">
+                <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Bộ lọc sản phẩm</h5>
+            </div>
+            <div class="card-body">
+                <form method="get" id="filterForm">
+                    <!-- Tìm kiếm -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tìm kiếm</label>
+                        <input type="text" name="search" value="@ViewBag.Search" class="form-control" placeholder="Nhập tên sản phẩm..." />
+                    </div>
+
+                    <!-- Danh mục -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Danh mục</label>
+                        <select name="categoryId" class="form-select">
+                            <option value="">Tất cả danh mục</option>
+                            @if (ViewBag.Categories != null)
+                            {
+                                foreach (var cat in ViewBag.Categories)
+                                {
+                                    var isSelected = (ViewBag.CategoryId != null && ViewBag.CategoryId == cat.Id);
+                                    <option value="@cat.Id" selected="@(isSelected ? "selected" : null)">@cat.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Thương hiệu -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Thương hiệu</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="brand" value="" id="brand-all" @(string.IsNullOrEmpty(ViewBag.Brand) ? "checked" : "")>
+                            <label class="form-check-label" for="brand-all">Tất cả thương hiệu</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="brand" value="panasonic" id="brand-panasonic" @(ViewBag.Brand == "panasonic" ? "checked" : "")>
+                            <label class="form-check-label" for="brand-panasonic">Panasonic</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="brand" value="kdk" id="brand-kdk" @(ViewBag.Brand == "kdk" ? "checked" : "")>
+                            <label class="form-check-label" for="brand-kdk">KDK</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="brand" value="vinawind" id="brand-vinawind" @(ViewBag.Brand == "vinawind" ? "checked" : "")>
+                            <label class="form-check-label" for="brand-vinawind">Vinawind</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="brand" value="kimthuanphong" id="brand-kimthuanphong" @(ViewBag.Brand == "kimthuanphong" ? "checked" : "")>
+                            <label class="form-check-label" for="brand-kimthuanphong">Kim Thuận Phong</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="brand" value="other" id="brand-other" @(ViewBag.Brand == "other" ? "checked" : "")>
+                            <label class="form-check-label" for="brand-other">Thương hiệu khác</label>
+                        </div>
+                    </div>
+
+                    <!-- Khoảng giá -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Khoảng giá</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="priceRange" value="" id="price-all" @(string.IsNullOrEmpty(ViewBag.PriceRange) ? "checked" : "")>
+                            <label class="form-check-label" for="price-all">Tất cả giá</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="priceRange" value="1" id="price-1" @(ViewBag.PriceRange == "1" ? "checked" : "")>
+                            <label class="form-check-label" for="price-1">Dưới 1 triệu</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="priceRange" value="2" id="price-2" @(ViewBag.PriceRange == "2" ? "checked" : "")>
+                            <label class="form-check-label" for="price-2">1 - 2 triệu</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="priceRange" value="3" id="price-3" @(ViewBag.PriceRange == "3" ? "checked" : "")>
+                            <label class="form-check-label" for="price-3">2 - 3 triệu</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="priceRange" value="4" id="price-4" @(ViewBag.PriceRange == "4" ? "checked" : "")>
+                            <label class="form-check-label" for="price-4">3 - 4 triệu</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="priceRange" value="5" id="price-5" @(ViewBag.PriceRange == "5" ? "checked" : "")>
+                            <label class="form-check-label" for="price-5">Trên 4 triệu</label>
+                        </div>
+                    </div>
+
+                    <!-- Loại sản phẩm -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Loại sản phẩm</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="productType" value="" id="type-all" @(string.IsNullOrEmpty(ViewBag.ProductType) ? "checked" : "")>
+                            <label class="form-check-label" for="type-all">Tất cả loại</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="productType" value="led" id="type-led" @(ViewBag.ProductType == "led" ? "checked" : "")>
+                            <label class="form-check-label" for="type-led">Có đèn LED</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="productType" value="chandelier" id="type-chandelier" @(ViewBag.ProductType == "chandelier" ? "checked" : "")>
+                            <label class="form-check-label" for="type-chandelier">Đèn chùm</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="productType" value="usb" id="type-usb" @(ViewBag.ProductType == "usb" ? "checked" : "")>
+                            <label class="form-check-label" for="type-usb">Đa năng USB</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="productType" value="opceiling" id="type-opceiling" @(ViewBag.ProductType == "opceiling" ? "checked" : "")>
+                            <label class="form-check-label" for="type-opceiling">Ốp trần</label>
+                        </div>
+                    </div>
+
+                    <!-- Số cánh -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Số cánh</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="bladeCount" value="" id="blade-all" @(string.IsNullOrEmpty(ViewBag.BladeCount) ? "checked" : "")>
+                            <label class="form-check-label" for="blade-all">Tất cả</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="bladeCount" value="4" id="blade-4" @(ViewBag.BladeCount == "4" ? "checked" : "")>
+                            <label class="form-check-label" for="blade-4">4 cánh</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="bladeCount" value="5" id="blade-5" @(ViewBag.BladeCount == "5" ? "checked" : "")>
+                            <label class="form-check-label" for="blade-5">5 cánh</label>
+                        </div>
+                    </div>
+
+                    <!-- Chất liệu -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Chất liệu</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="material" value="" id="material-all" @(string.IsNullOrEmpty(ViewBag.Material) ? "checked" : "")>
+                            <label class="form-check-label" for="material-all">Tất cả</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="material" value="wood" id="material-wood" @(ViewBag.Material == "wood" ? "checked" : "")>
+                            <label class="form-check-label" for="material-wood">Cánh gỗ</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="material" value="iron" id="material-iron" @(ViewBag.Material == "iron" ? "checked" : "")>
+                            <label class="form-check-label" for="material-iron">Cánh sắt</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="material" value="plastic" id="material-plastic" @(ViewBag.Material == "plastic" ? "checked" : "")>
+                            <label class="form-check-label" for="material-plastic">Cánh nhựa</label>
+                        </div>
+                    </div>
+
+                    <!-- Tính năng -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tính năng</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="feature" value="" id="feature-all" @(string.IsNullOrEmpty(ViewBag.Feature) ? "checked" : "")>
+                            <label class="form-check-label" for="feature-all">Tất cả</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="feature" value="remote" id="feature-remote" @(ViewBag.Feature == "remote" ? "checked" : "")>
+                            <label class="form-check-label" for="feature-remote">Có điều khiển</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="feature" value="led" id="feature-led" @(ViewBag.Feature == "led" ? "checked" : "")>
+                            <label class="form-check-label" for="feature-led">Có đèn LED</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="feature" value="usb" id="feature-usb" @(ViewBag.Feature == "usb" ? "checked" : "")>
+                            <label class="form-check-label" for="feature-usb">Đa năng USB</label>
+                        </div>
+                    </div>
+
+                    <!-- Đánh giá -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Đánh giá</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" value="" id="rating-all" @(string.IsNullOrEmpty(ViewBag.Rating) ? "checked" : "")>
+                            <label class="form-check-label" for="rating-all">Tất cả</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" value="4-5" id="rating-4-5" @(ViewBag.Rating == "4-5" ? "checked" : "")>
+                            <label class="form-check-label" for="rating-4-5">4-5 sao</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" value="3-4" id="rating-3-4" @(ViewBag.Rating == "3-4" ? "checked" : "")>
+                            <label class="form-check-label" for="rating-3-4">3-4 sao</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" value="has-review" id="rating-has-review" @(ViewBag.Rating == "has-review" ? "checked" : "")>
+                            <label class="form-check-label" for="rating-has-review">Có đánh giá</label>
+                        </div>
+                    </div>
+
+                    <!-- Trạng thái hàng -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Trạng thái hàng</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="stockStatus" value="" id="stock-all" @(string.IsNullOrEmpty(ViewBag.StockStatus) ? "checked" : "")>
+                            <label class="form-check-label" for="stock-all">Tất cả</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="stockStatus" value="instock" id="stock-instock" @(ViewBag.StockStatus == "instock" ? "checked" : "")>
+                            <label class="form-check-label" for="stock-instock">Còn hàng</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="stockStatus" value="lowstock" id="stock-lowstock" @(ViewBag.StockStatus == "lowstock" ? "checked" : "")>
+                            <label class="form-check-label" for="stock-lowstock">Sắp hết hàng</label>
+                        </div>
+                    </div>
+
+                    <!-- Các tùy chọn khác -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tùy chọn khác</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="hasDiscount" value="true" id="has-discount" @(ViewBag.HasDiscount == true ? "checked" : "")>
+                            <label class="form-check-label" for="has-discount">Có giảm giá</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="featured" value="true" id="featured" @(ViewBag.Featured == true ? "checked" : "")>
+                            <label class="form-check-label" for="featured">Sản phẩm nổi bật</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="bestSeller" value="true" id="bestseller" @(ViewBag.BestSeller == true ? "checked" : "")>
+                            <label class="form-check-label" for="bestseller">Sản phẩm bán chạy</label>
+                        </div>
+                    </div>
+
+                    <!-- Sắp xếp -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Sắp xếp</label>
+                        <select name="sort" class="form-select">
+                            <option value="" selected="@(string.IsNullOrEmpty(ViewBag.Sort) ? "selected" : null)">Mới nhất</option>
+                            <option value="price-asc" selected="@(ViewBag.Sort == "price-asc" ? "selected" : null)">Giá tăng dần</option>
+                            <option value="price-desc" selected="@(ViewBag.Sort == "price-desc" ? "selected" : null)">Giá giảm dần</option>
+                            <option value="name-asc" selected="@(ViewBag.Sort == "name-asc" ? "selected" : null)">Tên A-Z</option>
+                            <option value="name-desc" selected="@(ViewBag.Sort == "name-desc" ? "selected" : null)">Tên Z-A</option>
+                            <option value="rating" selected="@(ViewBag.Sort == "rating" ? "selected" : null)">Đánh giá cao nhất</option>
+                            <option value="popular" selected="@(ViewBag.Sort == "popular" ? "selected" : null)">Bán chạy nhất</option>
+                        </select>
+                    </div>
+
+                    <!-- Số sản phẩm/trang -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Hiển thị</label>
+                        <select name="pageSize" class="form-select">
+                            <option value="6" selected="@(ViewBag.PageSize == 6 ? "selected" : null)">6 sản phẩm</option>
+                            <option value="12" selected="@(ViewBag.PageSize == 12 ? "selected" : null)">12 sản phẩm</option>
+                            <option value="24" selected="@(ViewBag.PageSize == 24 ? "selected" : null)">24 sản phẩm</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search me-2"></i>Áp dụng bộ lọc
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>@ViewData["Title"]</h2>
+            <div class="text-muted">
+                <i class="fas fa-list me-1"></i>@ViewBag.TotalItems sản phẩm
+            </div>
+        </div>
+
+        @if (Model == null || !Model.Any())
+        {
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Không tìm thấy sản phẩm nào phù hợp với bộ lọc của bạn!
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 product-card">
+                            <div class="position-relative">
+                                <img src="@item.ImageUrl" class="card-img-top" style="height:200px;object-fit:cover;" alt="@item.Name" />
+                                @if (item.SalePercent == 40)
+                                {
+                                    <span class="position-absolute top-0 start-0 badge bg-danger m-2">-40%</span>
+                                }
+                                @if (item.DiscountPrice != null && item.DiscountPrice < item.Price && item.SalePercent != 40)
+                                {
+                                    <span class="position-absolute top-0 start-0 badge bg-danger m-2">
+                                        -@(((item.Price - item.DiscountPrice.Value) / item.Price * 100).ToString("0"))%
+                                    </span>
+                                }
+                                @if (item.IsFeatured)
+                                {
+                                    <span class="position-absolute top-0 end-0 badge bg-warning m-2">
+                                        <i class="fas fa-star me-1"></i>Nổi bật
+                                    </span>
+                                }
+                                @if (item.Stock <= 5 && item.Stock > 0)
+                                {
+                                    <span class="position-absolute bottom-0 start-0 badge bg-warning m-2">
+                                        Sắp hết hàng
+                                    </span>
+                                }
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h6 class="card-title">@item.Name</h6>
+                                <p class="card-text text-muted small flex-grow-1">@item.Description</p>
+                                <div class="mb-2">
+                                    @if (item.SalePercent == 40)
+                                    {
+                                        <span class="text-decoration-line-through text-muted">@item.Price.ToString("N0") <text>VNĐ</text></span>
+                                        <span class="text-danger fw-bold ms-2">@((item.Price * 0.6M).ToString("N0")) <text>VNĐ</text></span>
+                                    }
+                                    else if (item.DiscountPrice != null && item.DiscountPrice < item.Price)
+                                    {
+                                        <span class="text-decoration-line-through text-muted">@item.Price.ToString("N0") <text>VNĐ</text></span>
+                                        <span class="text-danger fw-bold ms-2">@(item.DiscountPrice != null ? item.DiscountPrice.Value.ToString("N0") : "") <text>VNĐ</text></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger fw-bold">@item.Price.ToString("N0") <text>VNĐ</text></span>
+                                    }
+                                </div>
+                                @if (item.AverageRating > 0)
+                                {
+                                    <div class="mb-2">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= item.AverageRating)
+                                            {
+                                                <i class="fas fa-star text-warning"></i>
+                                            }
+                                            else if (i - item.AverageRating < 1)
+                                            {
+                                                <i class="fas fa-star-half-alt text-warning"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-star text-warning"></i>
+                                            }
+                                        }
+                                        <span class="text-muted small ms-1">(@item.ReviewCount)</span>
+                                    </div>
+                                }
+                                <div class="d-grid gap-2">
+                                    <a href="@Url.Action("Details", "Product", new { id = item.Id })" class="btn btn-outline-primary">
+                                        <i class="fas fa-eye me-1"></i>Xem chi tiết
+                                    </a>
+                                    <a href="@Url.Action("AddToCart", "Cart", new { productId = item.Id })" class="btn btn-success">
+                                        <i class="fas fa-cart-plus me-1"></i>Thêm vào giỏ
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Phân trang -->
+            @if (ViewBag.TotalPages > 1)
+            {
+                <nav aria-label="Page navigation" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        @{
+                            var isFirstPage = ViewBag.CurrentPage == 1;
+                        }
+                        <li class="page-item @(isFirstPage ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { 
+                                search = ViewBag.Search, 
+                                categoryId = ViewBag.CategoryId, 
+                                priceRange = ViewBag.PriceRange, 
+                                sort = ViewBag.Sort, 
+                                page = ViewBag.CurrentPage - 1, 
+                                pageSize = ViewBag.PageSize,
+                                brand = ViewBag.Brand,
+                                productType = ViewBag.ProductType,
+                                bladeCount = ViewBag.BladeCount,
+                                material = ViewBag.Material,
+                                feature = ViewBag.Feature,
+                                rating = ViewBag.Rating,
+                                stockStatus = ViewBag.StockStatus,
+                                hasDiscount = ViewBag.HasDiscount,
+                                featured = ViewBag.Featured,
+                                bestSeller = ViewBag.BestSeller
+                            })">&laquo;</a>
+                        </li>
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            var isCurrentPage = ViewBag.CurrentPage == i;
+                            <li class="page-item @(isCurrentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { 
+                                    search = ViewBag.Search, 
+                                    categoryId = ViewBag.CategoryId, 
+                                    priceRange = ViewBag.PriceRange, 
+                                    sort = ViewBag.Sort, 
+                                    page = i, 
+                                    pageSize = ViewBag.PageSize,
+                                    brand = ViewBag.Brand,
+                                    productType = ViewBag.ProductType,
+                                    bladeCount = ViewBag.BladeCount,
+                                    material = ViewBag.Material,
+                                    feature = ViewBag.Feature,
+                                    rating = ViewBag.Rating,
+                                    stockStatus = ViewBag.StockStatus,
+                                    hasDiscount = ViewBag.HasDiscount,
+                                    featured = ViewBag.Featured,
+                                    bestSeller = ViewBag.BestSeller
+                                })">@i</a>
+                            </li>
+                        }
+                        @{
+                            var isLastPage = ViewBag.CurrentPage == ViewBag.TotalPages;
+                        }
+                        <li class="page-item @(isLastPage ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { 
+                                search = ViewBag.Search, 
+                                categoryId = ViewBag.CategoryId, 
+                                priceRange = ViewBag.PriceRange, 
+                                sort = ViewBag.Sort, 
+                                page = ViewBag.CurrentPage + 1, 
+                                pageSize = ViewBag.PageSize,
+                                brand = ViewBag.Brand,
+                                productType = ViewBag.ProductType,
+                                bladeCount = ViewBag.BladeCount,
+                                material = ViewBag.Material,
+                                feature = ViewBag.Feature,
+                                rating = ViewBag.Rating,
+                                stockStatus = ViewBag.StockStatus,
+                                hasDiscount = ViewBag.HasDiscount,
+                                featured = ViewBag.Featured,
+                                bestSeller = ViewBag.BestSeller
+                            })">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            }
+        }
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterForm = document.getElementById('filterForm');
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const selects = document.querySelectorAll('select[name="categoryId"], select[name="sort"], select[name="pageSize"]');
+    
+    // Auto-submit form when radio buttons change
+    radioButtons.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            addLoadingClass();
+            filterForm.submit();
+        });
+    });
+    
+    // Auto-submit form when checkboxes change
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            addLoadingClass();
+            filterForm.submit();
+        });
+    });
+    
+    // Auto-submit form when selects change
+    selects.forEach(function(select) {
+        select.addEventListener('change', function() {
+            addLoadingClass();
+            filterForm.submit();
+        });
+    });
+    
+    // Add loading animation
+    function addLoadingClass() {
+        filterForm.classList.add('filter-loading');
+        document.body.style.cursor = 'wait';
+    }
+    
+    // Remove loading class when page loads
+    filterForm.classList.remove('filter-loading');
+    document.body.style.cursor = 'default';
+    
+    // Smooth scroll to top when filter changes
+    if (window.location.search) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+</script> 

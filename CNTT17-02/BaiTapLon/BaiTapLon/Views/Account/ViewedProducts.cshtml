@@ -1,0 +1,27 @@
+@model List<BaiTapLon.Models.Product>
+@{
+    ViewData["Title"] = "Sản phẩm đã xem";
+}
+<h2 class="mb-4">Sản phẩm đã xem</h2>
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Bạn chưa xem sản phẩm nào.</div>
+}
+else
+{
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-md-4 col-lg-3 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <img src="@p.ImageUrl" class="card-img-top" alt="@p.Name" style="height:140px;object-fit:cover;">
+                    <div class="card-body p-2">
+                        <h6 class="card-title">@p.Name</h6>
+                        <p class="card-text text-danger fw-bold mb-2">@p.Price.ToString("N0") <text>VNĐ</text></p>
+                        <a href="@Url.Action("Details", "Product", new { id = p.Id })" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+} 

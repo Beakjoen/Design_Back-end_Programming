@@ -1,0 +1,146 @@
+@model List<BaiTapLon.Models.CartItem>
+@{
+    ViewData["Title"] = "Thanh toán";
+}
+<h2 class="mb-4">@ViewData["Title"]</h2>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <form asp-action="Checkout" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Thông tin giao hàng</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Họ tên</label>
+                                <input type="text" name="fullName" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Địa chỉ</label>
+                                <input type="text" name="address" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Số điện thoại</label>
+                                <input type="text" name="phone" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Ghi chú</label>
+                                <textarea name="note" class="form-control" rows="3" placeholder="Ghi chú cho đơn hàng..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phương thức thanh toán</label>
+                                <select name="paymentMethod" class="form-select" required>
+                                    <option value="">Chọn phương thức thanh toán</option>
+                                    <option value="COD">Thanh toán khi nhận hàng (COD)</option>
+                                    <option value="Bank">Chuyển khoản ngân hàng</option>
+                                    <option value="Momo">Ví MoMo</option>
+                                    <option value="Zalopay">Ví ZaloPay</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Sản phẩm trong đơn hàng</h5>
+                            <div class="table-responsive">
+                                <table class="table table-sm align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Giá</th>
+                                            <th>SL</th>
+                                            <th>Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="@item.Product?.ImageUrl" alt="@item.Product?.Name" style="width:40px;height:40px;object-fit:cover;" class="rounded me-2" />
+                                                        <span class="small">@item.Product?.Name</span>
+                                                    </div>
+                                                </td>
+                                                <td class="text-danger fw-bold small">@(item.Product?.DiscountPrice?.ToString("N0") ?? item.Product?.Price.ToString("N0")) VNĐ</td>
+                                                <td class="small">@item.Quantity</td>
+                                                <td class="fw-bold small">@(((item.Product?.DiscountPrice ?? item.Product?.Price ?? 0) * item.Quantity).ToString("N0")) VNĐ</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="border-top pt-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Tạm tính:</span>
+                                    <span>@ViewBag.Subtotal.ToString("N0") VNĐ</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Phí vận chuyển:</span>
+                                    <span>@ViewBag.ShippingFee.ToString("N0") VNĐ</span>
+                                </div>
+                                @if (ViewBag.DiscountAmount > 0)
+                                {
+                                    <div class="d-flex justify-content-between mb-2 text-success">
+                                        <span>Giảm giá (@ViewBag.AppliedPromotion):</span>
+                                        <span>-@ViewBag.DiscountAmount.ToString("N0") VNĐ</span>
+                                    </div>
+                                }
+                                <div class="d-flex justify-content-between fw-bold fs-5 border-top pt-2">
+                                    <span>Tổng cộng:</span>
+                                    <span class="text-danger">@ViewBag.Total.ToString("N0") VNĐ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Xác nhận đặt hàng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-4">
+    <h5 class="mb-3">Mã khuyến mãi</h5>
+    @if (!string.IsNullOrEmpty(ViewBag.AppliedPromotion))
+    {
+        <div class="alert alert-success">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>Mã đã áp dụng:</strong> @ViewBag.AppliedPromotion
+                </div>
+                <a href="@Url.Action("RemovePromotion", "Order")" class="btn btn-outline-danger btn-sm">Xóa</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <form asp-action="ApplyPromotion" method="post">
+            <div class="input-group mb-3">
+                <input type="text" name="promotionCode" class="form-control" placeholder="Nhập mã khuyến mãi..." />
+                <button type="submit" class="btn btn-outline-primary">Áp dụng</button>
+            </div>
+        </form>
+    }
+    @if (TempData["PromotionError"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["PromotionError"]
+        </div>
+    }
+    @if (TempData["PromotionSuccess"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["PromotionSuccess"]
+        </div>
+    }
+    @if (TempData["PromotionRemoved"] != null)
+    {
+        <div class="alert alert-info">
+            @TempData["PromotionRemoved"]
+        </div>
+    }
+</div>
+
+ 

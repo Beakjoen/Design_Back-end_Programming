@@ -1,0 +1,525 @@
+@* View mẫu chi tiết sản phẩm *@
+@model BaiTapLon.Models.Product
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+    var relatedProducts = ViewBag.RelatedProducts as List<BaiTapLon.Models.Product>;
+    var reviews = ViewBag.Reviews as List<BaiTapLon.Models.Review>;
+    var user = Context.Session.GetString("User");
+    var userId = ViewBag.UserId as int?;
+    var hasReviewed = false;
+    if (userId != null && reviews != null)
+    {
+        hasReviewed = reviews.Any(r => r.UserId == userId);
+    }
+}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="row g-0">
+                <div class="col-md-5 text-center p-3">
+                    <div class="position-relative d-inline-block">
+                        @if (Model.SalePercent == 40)
+                        {
+                            <span class="badge bg-danger position-absolute" style="top:10px;left:10px;font-size:1rem;z-index:2;">-40%</span>
+                        }
+                        <img src="@Model.ImageUrl" class="img-fluid rounded" alt="@Model.Name" style="max-height:350px;object-fit:contain;">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h2 class="card-title mb-3">@Model.Name</h2>
+                        <h4 class="text-danger fw-bold mb-3">
+                            @if (Model.SalePercent == 40)
+                            {
+                                <span class="text-decoration-line-through text-muted">@Model.Price.ToString("N0") <text>VNĐ</text></span>
+                                <span class="text-danger fw-bold ms-2">@((Model.Price * 0.6M).ToString("N0")) <text>VNĐ</text></span>
+                            }
+                            else
+                            {
+                                @Model.Price.ToString("N0") <text>VNĐ</text>
+                            }
+                        </h4>
+                        <p class="mb-2"><b>Tồn kho:</b> @Model.Stock</p>
+                        <p class="mb-2"><b>Danh mục:</b> @Model.Category?.Name</p>
+                        <p class="mb-3">@Model.Description</p>
+                        <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.Id })" class="btn btn-success btn-lg">Thêm vào giỏ hàng</a>
+                        <a href="/" class="btn btn-outline-secondary ms-2">Về trang chủ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Đánh giá sản phẩm -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-light">
+                <h4 class="mb-0">
+                    <i class="fas fa-star text-warning me-2"></i>
+                    Đánh giá sản phẩm 
+                    @if (Model.AverageRating > 0)
+                    {
+                        <span class="badge bg-primary ms-2">@Model.AverageRating.ToString("F1") ⭐ (@Model.ReviewCount đánh giá)</span>
+                    }
+                </h4>
+            </div>
+            <div class="card-body">
+                @if (TempData["ReviewSuccess"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>@TempData["ReviewSuccess"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+                @if (TempData["ReviewError"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i>@TempData["ReviewError"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+                @if (TempData["AddToCartSuccess"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="position:fixed;top:70px;right:20px;z-index:9999;min-width:250px;">
+                        <i class="fas fa-check-circle me-2"></i>@TempData["AddToCartSuccess"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+                @if (TempData["AddToCartError"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position:fixed;top:70px;right:20px;z-index:9999;min-width:250px;">
+                        <i class="fas fa-exclamation-circle me-2"></i>@TempData["AddToCartError"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+                
+                <!-- Form đánh giá -->
+                @if (userId != null && !hasReviewed)
+                {
+                    <div class="border rounded p-3 mb-3 bg-light">
+                        <h6 class="mb-3">
+                            <i class="fas fa-edit me-2"></i>Viết đánh giá của bạn
+                        </h6>
+                        <form id="reviewForm" asp-action="AddReview" method="post">
+                            <input type="hidden" name="productId" value="@Model.Id" />
+                            <div class="row">
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label fw-bold">Chọn số sao:</label>
+                                    <select name="rating" class="form-select">
+                                        <option value="5">⭐⭐⭐⭐⭐ 5 sao</option>
+                                        <option value="4">⭐⭐⭐⭐ 4 sao</option>
+                                        <option value="3">⭐⭐⭐ 3 sao</option>
+                                        <option value="2">⭐⭐ 2 sao</option>
+                                        <option value="1">⭐ 1 sao</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-9 mb-2">
+                                    <label class="form-label fw-bold">Nhận xét:</label>
+                                    <textarea name="comment" class="form-control" required rows="2" placeholder="Chia sẻ trải nghiệm của bạn về sản phẩm này..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="submitReviewBtn">
+                                <i class="fas fa-paper-plane me-2"></i>Gửi đánh giá
+                            </button>
+                        </form>
+                    </div>
+                }
+                else if (userId != null && hasReviewed)
+                {
+                    <div class="alert alert-info mb-3">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Bạn đã đánh giá sản phẩm này.
+                    </div>
+                }
+                else if (userId == null)
+                {
+                    <div class="alert alert-info mb-3">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Bạn cần <a href="/Account/Login" class="alert-link">đăng nhập</a> để đánh giá sản phẩm.
+                    </div>
+                }
+                
+                <!-- Tổng quan đánh giá -->
+                @if (Model.AverageRating > 0)
+                {
+                    <div class="rating-summary mb-3 p-3 bg-light rounded">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <div class="average-rating">
+                                    <h3 class="text-warning mb-1">@Model.AverageRating.ToString("F1")</h3>
+                                    <div class="stars mb-2">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= Model.AverageRating)
+                                            {
+                                                <i class="fas fa-star text-warning"></i>
+                                            }
+                                            else if (i - Model.AverageRating < 1)
+                                            {
+                                                <i class="fas fa-star-half-alt text-warning"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-star text-warning"></i>
+                                            }
+                                        }
+                                    </div>
+                                    <small class="text-muted">@Model.ReviewCount đánh giá</small>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="rating-bars">
+                                    @{
+                                        var ratingStats = reviews?.GroupBy(r => r.Rating)
+                                            .OrderByDescending(g => g.Key)
+                                            .ToDictionary(g => g.Key, g => g.Count()) ?? new Dictionary<int, int>();
+                                        
+                                        for (int i = 5; i >= 1; i--)
+                                        {
+                                            var count = ratingStats.ContainsKey(i) ? ratingStats[i] : 0;
+                                            var percentage = Model.ReviewCount > 0 ? (count * 100.0 / Model.ReviewCount) : 0;
+                                            <div class="rating-bar-item d-flex align-items-center mb-1">
+                                                <span class="me-2" style="min-width: 20px;">@i <i class="fas fa-star text-warning"></i></span>
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-warning" style="width: @percentage%"></div>
+                                                </div>
+                                                <small class="text-muted" style="min-width: 30px;">@count</small>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+                <!-- Danh sách đánh giá -->
+                <div class="reviews-container">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="mb-0">
+                            <i class="fas fa-comments me-2"></i>Tất cả đánh giá
+                        </h6>
+                        <div class="d-flex align-items-center">
+                            @if (reviews != null && reviews.Any())
+                            {
+                                <span class="badge bg-secondary me-2">@reviews.Count() đánh giá</span>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-outline-primary active" onclick="sortReviews('newest')">
+                                        <i class="fas fa-clock me-1"></i>Mới nhất
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary" onclick="sortReviews('rating')">
+                                        <i class="fas fa-star me-1"></i>Điểm cao
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @if (reviews != null && reviews.Any())
+                    {
+                        <div class="reviews-scrollable" id="reviewsContainer">
+                            @foreach (var r in reviews.OrderByDescending(r => r.CreatedAt))
+                            {
+                                <div class="review-item border-bottom pb-3 mb-3" data-rating="@r.Rating" data-date="@r.CreatedAt.ToString("yyyy-MM-dd HH:mm")">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <span class="fw-bold text-primary">@r.User?.FullName</span>
+                                            <div class="text-warning mt-1">
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= r.Rating)
+                                                    {
+                                                        <i class="fas fa-star"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="far fa-star"></i>
+                                                    }
+                                                }
+                                                <span class="text-muted ms-2">@r.Rating/5</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-muted small">
+                                            <i class="fas fa-clock me-1"></i>
+                                            @r.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                                        </span>
+                                    </div>
+                                    <div class="review-comment">
+                        @if (!string.IsNullOrEmpty(r.Comment))
+                        {
+                            <p class="mb-0">@r.Comment</p>
+                        }
+                        else
+                        {
+                            <p class="text-muted mb-0"><em>Không có nhận xét</em></p>
+                        }
+                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center text-muted py-4">
+                            <i class="fas fa-comment-slash fa-3x mb-3"></i>
+                            <p class="mb-0">Chưa có đánh giá nào cho sản phẩm này.</p>
+                            <small>Hãy là người đầu tiên đánh giá sản phẩm này!</small>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sản phẩm liên quan -->
+        @if (relatedProducts != null && relatedProducts.Any())
+        {
+            <div class="mb-4">
+                <h4 class="mb-3">Sản phẩm liên quan</h4>
+                <div class="row">
+                    @foreach (var item in relatedProducts)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 shadow-sm border-0 position-relative">
+                                @if (item.SalePercent == 40)
+                                {
+                                    <span class="badge bg-danger position-absolute" style="top:10px;left:10px;font-size:1rem;z-index:2;">-40%</span>
+                                }
+                                <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height:140px;object-fit:cover;">
+                                <div class="card-body p-2">
+                                    <h6 class="card-title">@item.Name</h6>
+                                    <p class="card-text mb-2">
+                                        @if (item.SalePercent == 40)
+                                        {
+                                            <span class="text-decoration-line-through text-muted">@item.Price.ToString("N0") <text>VNĐ</text></span>
+                                            <span class="text-danger fw-bold ms-2">@((item.Price * 0.6M).ToString("N0")) <text>VNĐ</text></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-danger fw-bold">@item.Price.ToString("N0") <text>VNĐ</text></span>
+                                        }
+                                    </p>
+                                    <a href="@Url.Action("Details", "Product", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+.reviews-container {
+    margin-top: 1rem;
+}
+
+.rating-summary {
+    border: 1px solid #dee2e6;
+}
+
+.average-rating h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.rating-bars .progress {
+    background-color: #e9ecef;
+}
+
+.rating-bars .progress-bar {
+    background-color: #ffc107;
+}
+
+.reviews-scrollable {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+
+.reviews-scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+.reviews-scrollable::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.reviews-scrollable::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.reviews-scrollable::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.review-item {
+    background-color: white;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.review-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.review-item:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0;
+}
+
+.review-comment {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+.review-comment p {
+    margin-bottom: 0;
+    word-wrap: break-word;
+}
+
+.alert {
+    transition: opacity 0.3s ease;
+}
+
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@@media (max-width: 768px) {
+    .reviews-scrollable {
+        max-height: 300px;
+    }
+    
+    .review-item {
+        padding: 0.75rem;
+    }
+    
+    .average-rating h3 {
+        font-size: 2rem;
+    }
+    
+    .rating-summary .col-md-3 {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0.375rem !important;
+        margin-bottom: 0.25rem;
+    }
+}
+</style>
+
+<script>
+function sortReviews(sortType) {
+    const container = document.getElementById('reviewsContainer');
+    const reviews = Array.from(container.children);
+    
+    // Cập nhật trạng thái nút
+    document.querySelectorAll('.btn-group .btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.closest('.btn').classList.add('active');
+    
+    // Sắp xếp đánh giá
+    reviews.sort((a, b) => {
+        if (sortType === 'newest') {
+            const dateA = new Date(a.dataset.date);
+            const dateB = new Date(b.dataset.date);
+            return dateB - dateA;
+        } else if (sortType === 'rating') {
+            const ratingA = parseInt(a.dataset.rating);
+            const ratingB = parseInt(b.dataset.rating);
+            return ratingB - ratingA;
+        }
+    });
+    
+    // Xóa và thêm lại các đánh giá đã sắp xếp
+    reviews.forEach(review => {
+        container.appendChild(review);
+    });
+    
+    // Thêm hiệu ứng loading
+    container.style.opacity = '0.7';
+    setTimeout(() => {
+        container.style.opacity = '1';
+    }, 300);
+}
+
+// Tự động cuộn đến phần đánh giá khi có thông báo thành công
+document.addEventListener('DOMContentLoaded', function() {
+    const successAlert = document.querySelector('.alert-success');
+    if (successAlert) {
+        setTimeout(() => {
+            document.querySelector('.reviews-container').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 500);
+    }
+    
+    // Xử lý loading khi gửi đánh giá
+    const reviewForm = document.querySelector('form[asp-action="AddReview"]');
+    const submitBtn = document.getElementById('submitReviewBtn');
+    
+    if (reviewForm && submitBtn) {
+        reviewForm.addEventListener('submit', function() {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang gửi...';
+        });
+    }
+    
+    // Tự động ẩn alert sau 5 giây
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+        setTimeout(() => {
+            if (alert.parentNode) {
+                alert.style.opacity = '0';
+                setTimeout(() => {
+                    if (alert.parentNode) {
+                        alert.remove();
+                    }
+                }, 300);
+            }
+        }, 5000);
+    });
+});
+</script> 
+
+<!-- Script AJAX gửi đánh giá -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const reviewForm = document.getElementById('reviewForm');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(reviewForm);
+            fetch('/Product/AddReview', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert(data.message || 'Có lỗi xảy ra!');
+                }
+            })
+            .catch(() => alert('Có lỗi xảy ra!'));
+        });
+    }
+});
+</script> 

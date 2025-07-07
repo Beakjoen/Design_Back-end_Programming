@@ -1,0 +1,28 @@
+@model List<BaiTapLon.Models.Promotion>
+@{
+    ViewData["Title"] = "Lấy mã khuyến mãi";
+}
+<h2 class="mb-4">Lấy mã khuyến mãi</h2>
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Hiện chưa có mã khuyến mãi nào.</div>
+}
+else
+{
+    <div class="row">
+        @foreach (var promo in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">@promo.Code</h5>
+                        <p class="card-text">@promo.Name</p>
+                        <p class="card-text small">@promo.Description</p>
+                        <p class="text-muted small mb-2">HSD: @promo.EndDate.ToString("dd/MM/yyyy")</p>
+                        <button class="btn btn-outline-success btn-sm" onclick="navigator.clipboard.writeText('@promo.Code')">Sao chép mã</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+} 

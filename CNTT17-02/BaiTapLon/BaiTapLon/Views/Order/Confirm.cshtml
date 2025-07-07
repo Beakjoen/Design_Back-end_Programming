@@ -1,0 +1,117 @@
+@model BaiTapLon.Models.Order
+@{
+    ViewData["Title"] = "Xác nhận đơn hàng";
+}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="alert alert-success text-center mb-4">
+            <h4 class="mb-2">Cảm ơn bạn đã đặt hàng tại <b>QUẠT TRẦN STORE</b>!</h4>
+            <div>Chúng tôi sẽ liên hệ xác nhận và giao hàng trong thời gian sớm nhất.</div>
+        </div>
+        
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Thông tin đơn hàng #@Model.Id</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="fw-bold mb-3">Thông tin khách hàng</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-person me-2"></i><strong>Họ tên:</strong> @ViewBag.FullName</li>
+                            <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><strong>Địa chỉ:</strong> @Model.ShippingAddress</li>
+                            <li class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Số điện thoại:</strong> @Model.Phone</li>
+                            @if (!string.IsNullOrEmpty(Model.Note))
+                            {
+                                <li class="mb-2"><i class="bi bi-chat me-2"></i><strong>Ghi chú:</strong> @Model.Note</li>
+                            }
+                            <li class="mb-2"><i class="bi bi-credit-card me-2"></i><strong>Thanh toán:</strong> @Model.PaymentMethod</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="fw-bold mb-3">Thông tin đơn hàng</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-calendar me-2"></i><strong>Ngày đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</li>
+                            <li class="mb-2"><i class="bi bi-info-circle me-2"></i><strong>Trạng thái:</strong> <span class="badge bg-warning">@Model.Status</span></li>
+                            @if (!string.IsNullOrEmpty(Model.PromotionCode))
+                            {
+                                <li class="mb-2"><i class="bi bi-tag me-2"></i><strong>Mã khuyến mãi:</strong> <span class="text-success">@Model.PromotionCode</span></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Sản phẩm đã đặt</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle table-bordered bg-white">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderDetails)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="@item.Product?.ImageUrl" alt="@item.Product?.Name" style="width:50px;height:50px;object-fit:cover;" class="rounded me-2" />
+                                            <span>@item.Product?.Name</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-danger fw-bold">@(item.DiscountUnitPrice?.ToString("N0") ?? item.UnitPrice.ToString("N0")) VNĐ</td>
+                                    <td>@item.Quantity</td>
+                                    <td class="fw-bold">@item.TotalLine.ToString("N0") VNĐ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="border-top pt-3">
+                    <div class="row justify-content-end">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Tạm tính:</span>
+                                <span>@ViewBag.Subtotal.ToString("N0") VNĐ</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Phí vận chuyển:</span>
+                                <span>@ViewBag.ShippingFee.ToString("N0") VNĐ</span>
+                            </div>
+                            @if (ViewBag.DiscountAmount > 0)
+                            {
+                                <div class="d-flex justify-content-between mb-2 text-success">
+                                    <span>Giảm giá (@Model.PromotionCode):</span>
+                                    <span>-@ViewBag.DiscountAmount.ToString("N0") VNĐ</span>
+                                </div>
+                            }
+                            <div class="d-flex justify-content-between fw-bold fs-5 border-top pt-2">
+                                <span>Tổng cộng:</span>
+                                <span class="text-danger">@Model.TotalAmount.ToString("N0") VNĐ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a href="/" class="btn btn-success btn-lg me-md-2">
+                <i class="bi bi-house me-2"></i>Về trang chủ
+            </a>
+            <a href="@Url.Action("OrderHistory", "Account")" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-list-ul me-2"></i>Xem đơn hàng
+            </a>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,133 @@
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Thống kê doanh thu";
+    var totalRevenue = ViewBag.TotalRevenue as decimal? ?? 0;
+    var monthRevenue = ViewBag.MonthRevenue as decimal? ?? 0;
+    var completedOrders = ViewBag.CompletedOrders as int? ?? 0;
+    var processingOrders = ViewBag.ProcessingOrders as int? ?? 0;
+    var canceledOrders = ViewBag.CanceledOrders as int? ?? 0;
+    var monthlyRevenue = ViewBag.MonthlyRevenue as IDictionary<int, decimal> ?? new Dictionary<int, decimal>();
+}
+<h2 class="mb-4">Thống kê doanh thu</h2>
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Tổng doanh thu</div>
+                <div class="display-6 text-success">@totalRevenue.ToString("N0") <text>VNĐ</text></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Doanh thu tháng này</div>
+                <div class="display-6 text-primary">@monthRevenue.ToString("N0") <text>VNĐ</text></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Đơn hoàn thành</div>
+                <div class="display-6 text-success">@completedOrders</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Đơn đang xử lý</div>
+                <div class="display-6 text-warning">@processingOrders</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Đơn bị hủy</div>
+                <div class="display-6 text-danger">@canceledOrders</div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<h4 class="mb-3">Doanh thu theo tháng</h4>
+<div class="row">
+    <div class="col-md-7">
+        @if (monthlyRevenue.Any())
+        {
+            <table class="table table-bordered table-striped w-auto mb-4">
+                <thead class="table-light">
+                    <tr>
+                        <th>Năm</th>
+                        <th>Tháng</th>
+                        <th>Doanh thu (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var entry in monthlyRevenue)
+                {
+                    var year = entry.Key / 100;
+                    var month = entry.Key % 100;
+                    <tr>
+                        <td>@year</td>
+                        <td>@month</td>
+                        <td class="text-end fw-bold">@entry.Value.ToString("N0") <text>VNĐ</text></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">Chưa có dữ liệu doanh thu theo tháng.</div>
+        }
+    </div>
+    <div class="col-md-5">
+        <canvas id="revenueChart" height="300"></canvas>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const monthlyData = @Html.Raw(JsonConvert.SerializeObject(monthlyRevenue));
+        const labels = Object.keys(monthlyData).map(k => {
+            const y = Math.floor(k / 100);
+            const m = k % 100;
+            return `${m < 10 ? '0' + m : m}/${y}`;
+        });
+        const data = Object.values(monthlyData);
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Doanh thu (VNĐ)',
+                    data: data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Doanh thu theo tháng' }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString('vi-VN') + ' VNĐ';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+} 

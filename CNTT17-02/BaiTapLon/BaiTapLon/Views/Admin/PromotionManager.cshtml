@@ -1,0 +1,62 @@
+@model List<BaiTapLon.Models.Promotion>
+@{
+    ViewData["Title"] = "Quản lý khuyến mãi";
+}
+<h2 class="mb-4">Quản lý khuyến mãi</h2>
+<div class="mb-4">
+    <form asp-action="CreatePromotion" method="post" class="row g-2 align-items-end">
+        <div class="col-md-2"><input type="text" name="Code" class="form-control" placeholder="Mã" required /></div>
+        <div class="col-md-2"><input type="text" name="Name" class="form-control" placeholder="Tên" required /></div>
+        <div class="col-md-2"><input type="number" name="DiscountPercent" class="form-control" placeholder="% giảm" min="0" max="100" /></div>
+        <div class="col-md-2"><input type="number" name="DiscountAmount" class="form-control" placeholder="Tiền giảm" min="0" /></div>
+        <div class="col-md-2"><input type="number" name="MinOrderAmount" class="form-control" placeholder="Đơn tối thiểu" min="0" /></div>
+        <div class="col-md-2"><input type="number" name="MaxDiscountAmount" class="form-control" placeholder="Giảm tối đa" min="0" /></div>
+        <div class="col-md-2"><input type="number" name="MaxUsage" class="form-control" placeholder="Số lượt" min="1" /></div>
+        <div class="col-md-2"><input type="date" name="StartDate" class="form-control" required /></div>
+        <div class="col-md-2"><input type="date" name="EndDate" class="form-control" required /></div>
+        <div class="col-md-2"><button type="submit" class="btn btn-success w-100">Thêm mới</button></div>
+    </form>
+</div>
+<table class="table table-bordered align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Mã</th><th>Tên</th><th>%</th><th>Tiền</th><th>Đơn tối thiểu</th><th>Giảm tối đa</th><th>Lượt dùng</th><th>Hiệu lực</th><th>Trạng thái</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var promo in Model)
+        {
+            <tr>
+                <td>@promo.Code</td>
+                <td>@promo.Name</td>
+                <td>@promo.DiscountPercent</td>
+                <td>@promo.DiscountAmount.ToString("N0")</td>
+                <td>@promo.MinOrderAmount.ToString("N0")</td>
+                <td>@promo.MaxDiscountAmount.ToString("N0")</td>
+                <td>@promo.UsedCount/@promo.MaxUsage</td>
+                <td>@promo.StartDate:dd/MM/yyyy - @promo.EndDate:dd/MM/yyyy</td>
+                <td>
+                    @if (promo.IsActive)
+                    {
+                        <span class="badge bg-success">Đang chạy</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Tắt</span>
+                    }
+                </td>
+                <td>
+                    <form asp-action="UpdatePromotionStatus" method="post" style="display:inline">
+                        <input type="hidden" name="promotionId" value="@promo.Id" />
+                        <input type="hidden" name="isActive" value="@((!promo.IsActive).ToString().ToLower())" />
+                        <button type="submit" class="btn btn-sm @(promo.IsActive ? "btn-danger" : "btn-success")">@(promo.IsActive ? "Tắt" : "Bật")</button>
+                    </form>
+                    <form asp-action="DeletePromotion" method="post" style="display:inline" onsubmit="return confirm('Xác nhận xóa mã này?');">
+                        <input type="hidden" name="id" value="@promo.Id" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger ms-1">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 
